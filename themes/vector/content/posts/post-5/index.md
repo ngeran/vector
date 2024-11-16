@@ -1,265 +1,137 @@
 +++
-title = 'Packet Header and Packet Types'
-date = 2024-10-11T16:11:35+03:00
-tags = ["OSPF","Posts","New"]
+title = 'Finite State Machine'
+date = 2024-10-12T08:45:08+03:00
 draft = false
+summary = 'This is the BGP Summary'
+featured = "post-1.jpg"
 +++
 
-> This section is extremely important.
 
-OSPF has it’s own IP protocol 89 (L3). Besides Virtual links an OSPF packet usually travels a single hop ( TTL =1). All OSPFv2 packets have a common 24-byte header, that contains all information necessary to determine whether OSPF speaking router should accept the packet. The header consists of the following fields:
+This article explains the BGP-FSM, the different states during the BGP neighbor negotiation and is based on Based on RFC 4271.  Unlike IGP, BGP does not have its own transport protocol, the BGP peering sessions are manually defined and rely on TCP. TCP eliminates the need to implement explicit update fragmentation, retransmission, acknowledgement, and sequencing.
 
-```
-0                   1                   2                   3
-0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|   Version #   |     Type      |         Packet length         |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                          Router ID                            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                           Area ID                             |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|           Checksum            |             AuType            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Authentication                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Authentication                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-```
+BGP listens on TCP port 179 and BGP MUST maintain a separate FSM for each configured peer.
 
-- Version #: The current OSPF version number, either 2 or 3.
-- Type: Type of OSPF packet ( look below for packet details ).
+Each BGP peer paired in a potential connection will attempt to connect to the other, unless configured to remain in the ‘idle’ state, or configured to remain passive. Active or connecting is the side of the TCP connection sending the first TCP SYN packet. Passive or listening side is the sender of the first SYN/ACK.
 
-![Packet Types](packet-types.png)
-Figure 1. Packet Types  
+BGP Neighbor States
+Six states are involved in the BGP process three for TCP connectivity and three for BGP connectivity as defined by RFC 4271.
 
-- Packet length: Length of the packet, in bytes, including the header.
-- Router ID: IP address of the router from which the packet originated.
-- Area ID: Identifier of the area in which the packet is traveling. Each OSPF packet is associated with a single area. Packets traveling over a virtual link are labeled with the backbone area ID, 0.0.0.0. .
-- Checksum: Fletcher checksum.
-- AuType: Authentication identification ( if any) is being used.
-- Authentication: (OSPFv2 only) Authentication scheme and authentication information.  
+| TCP Connectivity | BGP Connectivity |
+| ---------------- | ---------------- | 
+| Idle             | OpenSent         |
+| Connect          | OpenConfirm      |
+| Active           | Established      |  
 
-### Hello
 
-![Hallo Packet](hello-packet.png)
+![Finite State Machine](fsm-v1.png)
 
-Figure 2. R1 sends the initial OSPF Hello packet and R2 responds with the OSPF Hello Reply packet
-Hallo packets are sent periodically in order to establish and maintain adjacencies.  
+### Idle State
+> In this state, BGP refuses all incoming connections for the local system and no resources are allocated. In response to a ManualStart ( manually configure BGP on the local system ) event or an AutomaticStart ( restart existing session) BGP:
 
-- 10 seconds for Point to Point networks ( P2P).  
-- 30 seconds for NBMA networks.  
+- initializes all BGP resources for the peer connection,
+- sets ConncectRetryCounter to zero,
+- starts the ConnectRetryTimer with the initial value,
+- initiates the TCP connection to the other peer,
+- listens for a connection that may be initiated by the remote BGP peer and
+- changes its state to Connect.  
+In case of errors, BGP falls back to the Idle state.
 
-Hello packets are multicast on physical networks that have a multicast or broadcast capability, which enables dynamic discovery of neighboring routers.OSPF destination IPs are:  
+### Connect State
+>BGP is waiting for the transport protocol connection to be completed.
 
-- 224.0.0.5 AllSPFRouters.  
-- 224.0.0.6 AllDRRouters for broadcast links.  
+**If the TCP connection succeeds.**  
 
-```
-0                   1                   2                   3
-0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|   Version #   |       1       |         Packet length         |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                          Router ID                            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                           Area ID                             |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|           Checksum            |             AuType            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Authentication                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Authentication                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                        Network Mask                           |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|         HelloInterval         |    Options    |    Rtr Pri    |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                     RouterDeadInterval                        |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                      Designated Router                        |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                   Backup Designated Router                    |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                          Neighbor                             |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-```
+- stops the ConnectRetryTimer ( if running ) and sets the ConnectRetryTimer to zero,
+- completes the BGP initialization
+- sends an OPEN message to its peer,
+- sets the HoldTimer to a large value ( the suggestion is 5min), and
+- changes its state to OpenSent.  
 
-- Network mask : (OSPFv2 only) Network mask associated with the interface.
-- Hello interval : How often the router sends hello packets ( in seconds) . All routers on a shared network must use the same hello interval.  
+**If the TCP connection fails**  
 
-- Options : Optional capabilities of the router.  
-```
-             +--------------------------------------+
-             | DN | O | DC | EA | N/P | MC | E | MT |
-             +--------------------------------------+
-```
-- DN-bit: Used to prevent looping in L3 MPLS VPNs.  
-- O-bit: Opaque LSAs.  
-- DC-bit: Demand circuits.  
-- EA-bit: External-Attributes-LSAs.  
-- N/P-bit: Type-7 LSAs for NSSA support.  
-- MC-bit: IP multicast datagrams are forwarded.  
-- E-bit: AS-external-LSAs are flooded.  
-- MT-bit: Multi-topology capability.  
-- Rtr Pri (Router Priority): The router’s priority to become the designated router.  
-- Router Dead Interval : How long the router waits without receiving any OSPF packets from a router before declaring that router to be down. All routers on a shared network must use the same router dead interval.  
-- Designated router : IP address of the designated router.  
-- Backup Designated Router: IP address of the backup designated router.  
-- Neighbor : IP addresses of the routers from which valid hello packets have been received within the time specified by the router dead interval.  
+- restarts the ConnectRetryTimer,
+- changes its state to Active.  
 
-### Database Description
+**If the ConnectRetry timer expires**  
 
-![Database Description Packet](database-description.png)
+- remains in the Connect state
+- the timer is reset, and transport connection is initiated  
 
-These packets are exchanged when an adjacency is being initialized. In order to describe the complete topological database multiple packets may be used. When initializing an adjacency, a Master — Slave hierarchical order must be established. The Master router sends Database Description Packets (DBD) updates first while the Slave router listens.The responses are linked to the polls via the packets (DBD) Database Description sequence numbers.
+In case of any other event the state goes back to Idle.
 
-```
-0                   1                   2                   3
-0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|   Version #   |       2       |         Packet length         |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                          Router ID                            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                           Area ID                             |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|           Checksum            |             AuType            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Authentication                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Authentication                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|         Interface MTU         |    Options    |0|0|0|0|0|I|M|MS
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                     DD sequence number                        |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                                                               |
-+-                                                             -+
-|                                                               |
-+-                      An LSA Header                          -+
-|                                                               |
-+-                                                             -+
-|                                                               |
-+-                                                             -+
-|                                                               |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-```
+### Active State
+> In this state, BGP is trying to acquire a peer by listening for, and accepting a TCP connection
 
-- Interface MTU: MTU of the interface on the network link.  
-- Options: Same field as the options field used in the hello packet. Routers can use the options at this stage to determine if they need to forward certain LSAs due to the functionality of the neighboring router.  
-- I-bit (Initial bit): When set this is the first packet in the sequence of 
-Database Description Packets.  
-- M-bit (More bit): When set it indicates that more Database Description Packets are to follow.  
-- MS-bit (Master/Slave bit):When set it indicates that the router will be the master during the Database exchange process.  
-- DD sequence number: Used to sequence all of the Database Description packets.  
-- LSA Header: A list of all of the router’s link-state database headers. 
+**If the TCP connection succeeds**  
 
-> If the Interface MTU does not match during the database exchange, the exchange will not continue ( Neighbors Stuck in Exstart/Exchange State)
+- clears the BGP ConnectRetryTimer,
+- sends an OPEN message to its peer,
+- changes its state to OpenSent.  
 
-### Link-State Request
+**If the TCP connection fails**  
 
-When a router detects that portions of its topological database are out of date, it sends a link-state request packet to a neighbor requesting a precise instance of the database. These packets consist of the OSPF header plus fields that uniquely identify the database information that the router is seeking.
+- resets the ConnectRetryTimer,
+- changes its state to Idle.  
 
-```
-0                   1                   2                   3
-0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|   Version #   |       3       |         Packet length         |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                          Router ID                            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                           Area ID                             |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|           Checksum            |             AuType            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Authentication                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Authentication                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                          LS type                              |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Link State ID                           |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                     Advertising Router                        |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-```
+**If the ConnectRetry timer expires**  
 
-- LS Type: The type of the LSA. Each LSA type has a separate advertisement
-format. The LSA types defined in this memo are as follows.  
-- Link State ID: The contents of this field depend on the LSA’s LS type, and identifies the portion of the internet environment that is being described by the LSA.  
-- Advertising Router:The Router ID of the router that originated the LSA.  
+- BGP restarts the ConnectRetry timer
+- falls back to the Connect.  
 
-### Link-State Update
+The state might go back to Idle in case of other events, such as a Stop event initiated by the system or the operator. If the state is oscillating between Connect and Active indicates that something is wrong with the TCP transport connection.
 
-![Link State Update](link-state-update.png)
+### OpenSent
 
-Link-state update packets carry one or more link-state advertisements one hop farther from their origin. The router multicasts (floods) these packets on physical networks that support multicast or broadcast 31 mode. The router acknowledges all link-state update packets and, if retransmission is necessary, sends the retransmitted advertisements unicast. Link-state update packets consist of the OSPF header plus the following fields:
+> In this state, BGP waits for an OPEN message from its peer. Once received checks all fields for correctness.
 
-```
-0                   1                   2                   3
-0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|   Version #   |       4       |         Packet length         |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                          Router ID                            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                           Area ID                             |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|           Checksum            |             AuType            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Authentication                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Authentication                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                            # LSAs                             |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                                                               |
-+-                                                            +-+
-|                             LSAs                              |
-+-                                                            +-+
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-```
+**The OPEN message contains:**  
+- BGP version.
+- The autonomous system (AS) number.
+- The source IP address of the configured neighbor.
+- Router-ID uniqueness.
+- Security parameters ( TTL, password, etc)
+- Capabilities.  
 
-- LSAs: The number of LSA included in the update.  
-- LSAs: List of LSAs, the link-state advertisements themselves.. Each LSA begins with a common 20 byte header.  
+**If there are errors or capabilities mismatch in the OPEN message the local system:**  
 
-### Link-State Acknowledgment
+- the system sends an error NOTIFICATION message
+- goes back to Active.  
 
-The router sends link-state acknowledgment packets in response to link-state update packets to verify that the update packets have been received successfully. Multiple LSAs can be acknowledged in a single Link State
-Acknowledgment packet.  
+**If there is an error due to TCP event**  
 
-Link-state request, link-state update, and link-state acknowledgment packets are used to reliably flood link-state advertisement packets. The format of this packet is similar to that of the Data Description packet.  
+- the state will change to Active
+- will attempt to complete the three-way handshake.  
 
-The body of both packets is simply a list of LSA headers.  
+**If there are no errors in the OPEN message the local system:**  
 
-```
-0                   1                   2                   3
-0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|   Version #   |       5       |         Packet length         |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                          Router ID                            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                           Area ID                             |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|           Checksum            |             AuType            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Authentication                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                       Authentication                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                                                               |
-+-                                                             -+
-|                                                               |
-+-                         An LSA Header                       -+
-|                                                               |
-+-                                                             -+
-|                                                               |
-+-                                                             -+
-|                                                               |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-```
-Each acknowledged LSA is described by its LSA header. It contains all the
-information required to uniquely identify both the LSA and the LSA’s
-current instance.
+- resets the DelayOpenTimer to zero,
+- sets ConnectRetryTimer to zero,
+- sends a KEEPALIVE message, and
+- sets the HoldTimer per the negotiated value, and
+- changes its state to OpenConfirm.
+
+### OpenConfirm
+> In this state, BGP waits for a KEEPALIVE or NOTIFICATION message.
+
+**If a NOTIFICATION message is received,**  
+
+- falls back to the Idle state  
+
+**In case of any transport disconnect notification or in response to any stop event**  
+
+- the state falls back to Idle state  
+
+**If the local system receives a KEPALIVE the local system:** 
+
+- restarts the HoldTimer and
+- changes its state to Established.  
+The system sends periodic KEEPALIVE messages at the rate set by the KEEPALIVE timer.
+
+### Established
+> In the Established state, BGP can exchange UPDATE, NOTIFICATION and KEEPALIVE messages with its peer.
+
+If the HoldTimer expires before the local system receives a KEPALIVE, NOTIFICATION or an UPADTE message BGP will change its state to Idle.
+
+The UPDATE messages are checked for errors or missing attributes such as missing attributes. If errors are found, a NOTIFICATION message is sent to the peer, and the state falls back to Idle.
+
+If the Hold Timer expires, or a disconnect notification is received from the transport protocol, or a Stop event is received, or in response to any other event, the system falls back to the Idle state.

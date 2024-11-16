@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 <meta name="robots" content="noindex, nofollow" />
 <title>
-My New Hugo Site
+Packet Header and Packet Types | Custom [vector] Hugo Simple Theme
 </title>
 
     <link rel="stylesheet" href="/css/styles.css">
@@ -18,7 +18,7 @@ My New Hugo Site
 </head>
 <body>
   <header>
-    <h1>My New Hugo Site</h1>
+    <h1>Custom [vector] Hugo Simple Theme</h1>
 
  
     <ul class="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 rounded-2xl">
@@ -37,81 +37,261 @@ My New Hugo Site
   </header>
   <main>
     
-  <h1></h1>
-  <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>OSPF routers send out hello packets to form and maintain adjacencies with their neighbors. Hellos are sent to AllSPFRoutes address (224.0.0.5), once OSPF speaking routes see hellos from another router, they will compare parameters and if they match will form an adjacency and become neighbors.</p>
-<!-- raw HTML omitted -->
-<p>OSPF uses IP protocol number 89 and the AllSPFRouters multicast address of 224.0.0.5 to flood LSAs. OSPF routers forward all LSAs through all OSPF configured interfaces except the one on which an LSA was received ( Split Horizon)</p>
-<!-- raw HTML omitted -->
-<p>OSPF gains scalability as a protocol through the use of a hierarchical design. Portions of the network are designated as separate areas. These remote areas are then connected through a common area known as the backbone.</p>
+  <h1>Packet Header and Packet Types</h1>
 
   
-    <h2><a href="/posts/post-4/type-5-lsa/">Type 5 LSA - External</a></h2>
-    <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
   
-    <h2><a href="/posts/post-4/type-4-lsa/">Type 4 LSA - Network Summary</a></h2>
-    <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+  <time datetime="2024-10-11T16:11:35&#43;03:00">October 11, 2024</time>
+
+  <blockquote>
+<p>This section is extremely important.</p>
+</blockquote>
+<p>OSPF has it’s own IP protocol 89 (L3). Besides Virtual links an OSPF packet usually travels a single hop ( TTL =1). All OSPFv2 packets have a common 24-byte header, that contains all information necessary to determine whether OSPF speaking router should accept the packet. The header consists of the following fields:</p>
+<pre tabindex="0"><code>0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|   Version #   |     Type      |         Packet length         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          Router ID                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                           Area ID                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           Checksum            |             AuType            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre><ul>
+<li>Version #: The current OSPF version number, either 2 or 3.</li>
+<li>Type: Type of OSPF packet ( look below for packet details ).</li>
+</ul>
+<p><img src="packet-types.png" alt="Packet Types">
+Figure 1. Packet Types</p>
+<ul>
+<li>Packet length: Length of the packet, in bytes, including the header.</li>
+<li>Router ID: IP address of the router from which the packet originated.</li>
+<li>Area ID: Identifier of the area in which the packet is traveling. Each OSPF packet is associated with a single area. Packets traveling over a virtual link are labeled with the backbone area ID, 0.0.0.0. .</li>
+<li>Checksum: Fletcher checksum.</li>
+<li>AuType: Authentication identification ( if any) is being used.</li>
+<li>Authentication: (OSPFv2 only) Authentication scheme and authentication information.</li>
+</ul>
+<h3 id="hello">Hello</h3>
+<p><img src="hello-packet.png" alt="Hallo Packet"></p>
+<p>Figure 2. R1 sends the initial OSPF Hello packet and R2 responds with the OSPF Hello Reply packet
+Hallo packets are sent periodically in order to establish and maintain adjacencies.</p>
+<ul>
+<li>10 seconds for Point to Point networks ( P2P).</li>
+<li>30 seconds for NBMA networks.</li>
+</ul>
+<p>Hello packets are multicast on physical networks that have a multicast or broadcast capability, which enables dynamic discovery of neighboring routers.OSPF destination IPs are:</p>
+<ul>
+<li>224.0.0.5 AllSPFRouters.</li>
+<li>224.0.0.6 AllDRRouters for broadcast links.</li>
+</ul>
+<pre tabindex="0"><code>0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|   Version #   |       1       |         Packet length         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          Router ID                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                           Area ID                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           Checksum            |             AuType            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                        Network Mask                           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         HelloInterval         |    Options    |    Rtr Pri    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                     RouterDeadInterval                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                      Designated Router                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                   Backup Designated Router                    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          Neighbor                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre><ul>
+<li>
+<p>Network mask : (OSPFv2 only) Network mask associated with the interface.</p>
+</li>
+<li>
+<p>Hello interval : How often the router sends hello packets ( in seconds) . All routers on a shared network must use the same hello interval.</p>
+</li>
+<li>
+<p>Options : Optional capabilities of the router.</p>
+</li>
+</ul>
+<pre tabindex="0"><code>             +--------------------------------------+
+             | DN | O | DC | EA | N/P | MC | E | MT |
+             +--------------------------------------+
+</code></pre><ul>
+<li>DN-bit: Used to prevent looping in L3 MPLS VPNs.</li>
+<li>O-bit: Opaque LSAs.</li>
+<li>DC-bit: Demand circuits.</li>
+<li>EA-bit: External-Attributes-LSAs.</li>
+<li>N/P-bit: Type-7 LSAs for NSSA support.</li>
+<li>MC-bit: IP multicast datagrams are forwarded.</li>
+<li>E-bit: AS-external-LSAs are flooded.</li>
+<li>MT-bit: Multi-topology capability.</li>
+<li>Rtr Pri (Router Priority): The router’s priority to become the designated router.</li>
+<li>Router Dead Interval : How long the router waits without receiving any OSPF packets from a router before declaring that router to be down. All routers on a shared network must use the same router dead interval.</li>
+<li>Designated router : IP address of the designated router.</li>
+<li>Backup Designated Router: IP address of the backup designated router.</li>
+<li>Neighbor : IP addresses of the routers from which valid hello packets have been received within the time specified by the router dead interval.</li>
+</ul>
+<h3 id="database-description">Database Description</h3>
+<p><img src="database-description.png" alt="Database Description Packet"></p>
+<p>These packets are exchanged when an adjacency is being initialized. In order to describe the complete topological database multiple packets may be used. When initializing an adjacency, a Master — Slave hierarchical order must be established. The Master router sends Database Description Packets (DBD) updates first while the Slave router listens.The responses are linked to the polls via the packets (DBD) Database Description sequence numbers.</p>
+<pre tabindex="0"><code>0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|   Version #   |       2       |         Packet length         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          Router ID                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                           Area ID                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           Checksum            |             AuType            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         Interface MTU         |    Options    |0|0|0|0|0|I|M|MS
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                     DD sequence number                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                                                               |
++-                                                             -+
+|                                                               |
++-                      An LSA Header                          -+
+|                                                               |
++-                                                             -+
+|                                                               |
++-                                                             -+
+|                                                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre><ul>
+<li>Interface MTU: MTU of the interface on the network link.</li>
+<li>Options: Same field as the options field used in the hello packet. Routers can use the options at this stage to determine if they need to forward certain LSAs due to the functionality of the neighboring router.</li>
+<li>I-bit (Initial bit): When set this is the first packet in the sequence of
+Database Description Packets.</li>
+<li>M-bit (More bit): When set it indicates that more Database Description Packets are to follow.</li>
+<li>MS-bit (Master/Slave bit):When set it indicates that the router will be the master during the Database exchange process.</li>
+<li>DD sequence number: Used to sequence all of the Database Description packets.</li>
+<li>LSA Header: A list of all of the router’s link-state database headers.</li>
+</ul>
+<blockquote>
+<p>If the Interface MTU does not match during the database exchange, the exchange will not continue ( Neighbors Stuck in Exstart/Exchange State)</p>
+</blockquote>
+<h3 id="link-state-request">Link-State Request</h3>
+<p>When a router detects that portions of its topological database are out of date, it sends a link-state request packet to a neighbor requesting a precise instance of the database. These packets consist of the OSPF header plus fields that uniquely identify the database information that the router is seeking.</p>
+<pre tabindex="0"><code>0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|   Version #   |       3       |         Packet length         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          Router ID                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                           Area ID                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           Checksum            |             AuType            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          LS type                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Link State ID                           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                     Advertising Router                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre><ul>
+<li>LS Type: The type of the LSA. Each LSA type has a separate advertisement
+format. The LSA types defined in this memo are as follows.</li>
+<li>Link State ID: The contents of this field depend on the LSA’s LS type, and identifies the portion of the internet environment that is being described by the LSA.</li>
+<li>Advertising Router:The Router ID of the router that originated the LSA.</li>
+</ul>
+<h3 id="link-state-update">Link-State Update</h3>
+<p><img src="link-state-update.png" alt="Link State Update"></p>
+<p>Link-state update packets carry one or more link-state advertisements one hop farther from their origin. The router multicasts (floods) these packets on physical networks that support multicast or broadcast 31 mode. The router acknowledges all link-state update packets and, if retransmission is necessary, sends the retransmitted advertisements unicast. Link-state update packets consist of the OSPF header plus the following fields:</p>
+<pre tabindex="0"><code>0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|   Version #   |       4       |         Packet length         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          Router ID                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                           Area ID                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           Checksum            |             AuType            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                            # LSAs                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                                                               |
++-                                                            +-+
+|                             LSAs                              |
++-                                                            +-+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre><ul>
+<li>LSAs: The number of LSA included in the update.</li>
+<li>LSAs: List of LSAs, the link-state advertisements themselves.. Each LSA begins with a common 20 byte header.</li>
+</ul>
+<h3 id="link-state-acknowledgment">Link-State Acknowledgment</h3>
+<p>The router sends link-state acknowledgment packets in response to link-state update packets to verify that the update packets have been received successfully. Multiple LSAs can be acknowledged in a single Link State
+Acknowledgment packet.</p>
+<p>Link-state request, link-state update, and link-state acknowledgment packets are used to reliably flood link-state advertisement packets. The format of this packet is similar to that of the Data Description packet.</p>
+<p>The body of both packets is simply a list of LSA headers.</p>
+<pre tabindex="0"><code>0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|   Version #   |       5       |         Packet length         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          Router ID                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                           Area ID                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           Checksum            |             AuType            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                                                               |
++-                                                             -+
+|                                                               |
++-                         An LSA Header                       -+
+|                                                               |
++-                                                             -+
+|                                                               |
++-                                                             -+
+|                                                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre><p>Each acknowledged LSA is described by its LSA header. It contains all the
+information required to uniquely identify both the LSA and the LSA’s
+current instance.</p>
+
   
-    <h2><a href="/posts/post-4/type-3-lsa/">Type 3 LSA - Summary</a></h2>
-    <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-  
-    <h2><a href="/posts/post-4/type-2-lsa/">Type 2 LSA - Network</a></h2>
-    <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-  
-    <h2><a href="/posts/post-4/type-1-lsa/">O.S.P.F Type 1 -Router</a></h2>
-    <!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-  
+  <div>
+    <div>Tags:</div>
+    <ul>
+        <li><a href="/tags/ospf/">OSPF</a></li>
+        <li><a href="/tags/posts/">Posts</a></li>
+        <li><a href="/tags/new/">New</a></li>
+    </ul>
+  </div>
+
 
   </main>
   <footer>

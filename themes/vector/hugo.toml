@@ -1,6 +1,6 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-US'
-title = 'My New Hugo Site'
+title = 'Main hugo.toml overites this file'
 
 [[menus.main]]
 name = 'Home'
