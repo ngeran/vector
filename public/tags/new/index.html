@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+<meta name="robots" content="noindex, nofollow" />
+<title>
+New | My New Hugo Site
+</title>
+
+    <link rel="stylesheet" href="/css/styles.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+  <header>
+    <h1>My New Hugo Site</h1>
+
+ 
+    <ul class="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 rounded-2xl">
+    <li class="flex items-center p-1 text-sm gap-x-2 text-slate-950 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 rounded-lg px-2 py-1 font-medium">
+      <a class="flex items-center" href="/">Home</a>
+    </li>
+    <li class="flex items-center p-1 text-sm gap-x-2 text-slate-950 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 rounded-lg px-2 py-1 font-medium">
+      <a class="flex items-center" href="/posts/">Posts</a>
+    </li>
+    <li class="flex items-center p-1 text-sm gap-x-2 text-slate-950 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 rounded-lg px-2 py-1 font-medium">
+      <a class="flex items-center" href="/tags/">Tags</a>
+    </li>
+    </ul>
+
+
+  </header>
+  <main>
+    
+  <h1>New</h1>
+  
+  
+    <h2><a href="/posts/post-5/">Packet Header and Packet Types</a></h2>
+    <blockquote>
+<p>This section is extremely important.</p>
+</blockquote>
+<p>OSPF has it’s own IP protocol 89 (L3). Besides Virtual links an OSPF packet usually travels a single hop ( TTL =1). All OSPFv2 packets have a common 24-byte header, that contains all information necessary to determine whether OSPF speaking router should accept the packet. The header consists of the following fields:</p>
+<pre tabindex="0"><code>0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|   Version #   |     Type      |         Packet length         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          Router ID                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                           Area ID                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           Checksum            |             AuType            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre><ul>
+<li>Version #: The current OSPF version number, either 2 or 3.</li>
+<li>Type: Type of OSPF packet ( look below for packet details ).</li>
+</ul>
+<p><img src="packet-types.png" alt="Packet Types">
+Figure 1. Packet Types</p>
+  
+    <h2><a href="/posts/post-4/type-5-lsa/">Type 5 LSA - External</a></h2>
+    <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+  
+    <h2><a href="/posts/post-4/type-4-lsa/">Type 4 LSA - Network Summary</a></h2>
+    <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+  
+    <h2><a href="/posts/post-4/type-3-lsa/">Type 3 LSA - Summary</a></h2>
+    <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+  
+    <h2><a href="/posts/post-4/type-2-lsa/">Type 2 LSA - Network</a></h2>
+    <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+  
+
+  </main>
+  <footer>
+    <footer class="mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8 text-center bg-[#d8dee9]">
+    <div class="border-t border-slate-900/5 py-10">
+      <span class="text-blue-600">[</span> webvector <span class="text-blue-600">]</span>
+        <p class="mt-5 text-center text-sm leading-6 text-slate-500">© Copyright 2024. All rights reserved.</p>
+        <div class="mt-8 flex items-center justify-center space-x-4 text-sm font-semibold leading-6 text-slate-700"><a
+                href="/privacy-policy">Privacy policy</a>
+            <div class="h-4 w-px bg-slate-500/20"></div><a href="/changelog">Changelog</a>
+        </div>
+    </div>
+</footer>
+
+  </footer>
+</body>
+</html>
