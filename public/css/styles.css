@@ -2394,6 +2394,11 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.hover\:bg-\[\#2e3440\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(46 52 64 / var(--tw-bg-opacity, 1));
+}
+
 .hover\:text-\[\#8fbcbb\]:hover {
   --tw-text-opacity: 1;
   color: rgb(143 188 187 / var(--tw-text-opacity, 1));
@@ -2412,6 +2417,16 @@ video {
 .hover\:text-indigo-600:hover {
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-\[\#4c566a\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(76 86 106 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-\[\#5e81ac\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(94 129 172 / var(--tw-text-opacity, 1));
 }
 
 .prose-h3\:text-\[\#5e81ac\] :is(:where(h3):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
