@@ -19,21 +19,21 @@ Finite State Machine | Custom [vector] Hugo Simple Theme
 <body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-[#242933] dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
   <header>
      
- <nav class="flex max-w-screen-lg px-4 py-2 mx-auto bg-[#EFEFEF] bg-opacity-10 fixed inset-x-0 top-3 shadow lg:px-8 lg:py-3 backdrop-blur-lg backdrop-saturate-150 z-10 rounded-2xl">
+ <nav class="flex max-w-screen-lg px-4 py-2 mx-auto bg-[#d8dee9] bg-opacity-10 fixed inset-x-0 top-3 shadow lg:px-8 lg:py-3 backdrop-blur-lg backdrop-saturate-150 z-10 rounded-2xl">
     <div class="container flex flex-wrap items-center justify-between mx-auto text-black">
-     <a href="/" class="" ><span class="text-blue-600">[</span> V <span class="text-blue-600">]</span></a>
+     <a href="/" class="" ><span class="text-[#5e81ac]">[</span> V <span class="text-[#5e81ac]">]</span></a>
       <div class="hidden lg:block">
          
          
  
     <ul class="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 rounded-2xl">
-    <li class="flex items-center p-1 text-sm gap-x-2 text-slate-950 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 rounded-lg px-2 py-1 font-medium">
+    <li class="flex items-center p-1 text-sm gap-x-2 text-[#88c0d0] transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 rounded-lg px-2 py-1 font-medium">
       <a class="flex items-center" href="/">Home</a>
     </li>
-    <li class="flex items-center p-1 text-sm gap-x-2 text-slate-950 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 rounded-lg px-2 py-1 font-medium">
+    <li class="flex items-center p-1 text-sm gap-x-2 text-[#88c0d0] transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 rounded-lg px-2 py-1 font-medium">
       <a class="flex items-center" aria-current="true" class="ancestor" href="/posts/">Posts</a>
     </li>
-    <li class="flex items-center p-1 text-sm gap-x-2 text-slate-950 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 rounded-lg px-2 py-1 font-medium">
+    <li class="flex items-center p-1 text-sm gap-x-2 text-[#88c0d0] transition-all duration-200 hover:bg-gray-100 hover:text-gray-900 rounded-lg px-2 py-1 font-medium">
       <a class="flex items-center" href="/tags/">Tags</a>
     </li>
     </ul>
@@ -59,13 +59,17 @@ Finite State Machine | Custom [vector] Hugo Simple Theme
               <span>4 minutes</span>
             </div>
             <div class="flex flex-row flex-wrap items-center">
-              <span style="margin-top:0.5rem" class="mr-2" >
-                <span class="flex" style="cursor: pointer;">
-              <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-[#5e81ac]">
-                OSPF
-              </span>
-            </span>
-              </span>
+              
+              
+      <span style="margin-top:0.5rem" class="mr-2" >
+        <span class="flex" style="cursor: pointer;">
+      <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-[#8fbcbb] dark:text-[#5e81ac]">
+        <a href="/tags/bgp/">BGP</a>
+      </span>
+      </span>
+      </span>
+
+
             </div>
           </div>
           
@@ -250,8 +254,6 @@ The system sends periodic KEEPALIVE messages at the rate set by the KEEPALIVE ti
 <p>If the HoldTimer expires before the local system receives a KEPALIVE, NOTIFICATION or an UPADTE message BGP will change its state to Idle.</p>
 <p>The UPDATE messages are checked for errors or missing attributes such as missing attributes. If errors are found, a NOTIFICATION message is sent to the peer, and the state falls back to Idle.</p>
 <p>If the Hold Timer expires, or a disconnect notification is received from the transport protocol, or a Stop event is received, or in response to any other event, the system falls back to the Idle state.</p>
-
-        
 
          
         </div>

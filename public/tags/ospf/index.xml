@@ -15,5 +15,12 @@
       <guid>http://localhost:1313/posts/post-4/</guid>
       <description>This is the Post 4 Summary</description>
     </item>
+    <item>
+      <title>Packet Header and Packet Types</title>
+      <link>http://localhost:1313/posts/post-7/</link>
+      <pubDate>Fri, 11 Oct 2024 16:11:35 +0300</pubDate>
+      <guid>http://localhost:1313/posts/post-7/</guid>
+      <description>This is the Post 4 Summary</description>
+    </item>
   </channel>
 </rss>

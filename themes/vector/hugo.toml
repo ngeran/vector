@@ -36,3 +36,9 @@ weight = 30
 [tableOfContents]
   startLevel = 2
   endLevel = 4
+
+  [pagination]
+  disableAliases = false
+  pagerSize = 10
+  path = 'page'
+  paginate = 3

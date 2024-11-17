@@ -35,8 +35,8 @@
           </div>
           <div class="px-6 py-4 mb-auto">
               <a href="{{ .RelPermalink }}"
-                  class="font-medium text-lg inline-block hover:text-[#8fbcbb] transition duration-500 ease-in-out mb-2">{{ .LinkTitle }}</a>
-              <p class="text-gray-500 text-sm">
+                  class="font-medium text-lg inline-block text-[#4c566a] hover:text-[#8fbcbb] transition duration-500 ease-in-out mb-2">{{ .LinkTitle }}</a>
+              <p class="text-[#e5e9f0] text-sm">
                 {{ .Summary }}
               </p>
           </div>
@@ -54,7 +54,7 @@
                           </g>
                       </g>
                   </svg>
-                  <span class="ml-1">6 mins ago</span>
+                  <span class="ml-1 text-[#8fbcbb]">{{ .ReadingTime }} minutes</span>
               </span>
 
               <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
@@ -63,7 +63,7 @@
                           d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z">
                       </path>
                   </svg>
-                  <span class="ml-1">500 words</span>
+                  <span class="ml-1 text-[#8fbcbb]">{{ .WordCount }} words</span>
               </span>
           </div>
       </div>
@@ -71,4 +71,5 @@
       <!-- CARD ENDS -->
   </div>
 </div>
+
 </section>
