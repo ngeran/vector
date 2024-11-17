@@ -3,7 +3,7 @@ title = 'Finite State Machine'
 date = 2024-10-12T08:45:08+03:00
 draft = false
 summary = 'This is the BGP Summary'
-featured = "post-1.jpg"
+featured_image = '/post-1.jpg'
 +++
 
 

@@ -21,3 +21,18 @@ weight = 30
   [module.hugoVersion]
     extended = false
     min = "0.116.0"
+
+
+# -- Markup --
+# These settings are required for the theme to function.
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[highlight]
+  noClasses = false
+
+[tableOfContents]
+  startLevel = 2
+  endLevel = 4

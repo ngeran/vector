@@ -4,6 +4,7 @@ date = 2024-10-11T16:11:35+03:00
 tags = ["OSPF","Posts","New"]
 draft = false
 summary = 'This is the Post 4 Summary'
+featured_image = '/post-3.jpg'
 +++
 
 > This section is extremely important.
