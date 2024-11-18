@@ -5,6 +5,8 @@ tags = ["OSPF","Posts","New"]
 draft = false
 summary = 'This is the Post 4 Summary'
 featured_image = '/post-3.jpg'
+author = 'nikos'
+author_image = '/io.png'
 +++
 
 > This section is extremely important.

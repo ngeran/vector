@@ -2,6 +2,7 @@ baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'Custom [vector] Hugo Simple Theme'
 theme = 'vector'
+paginate = 6
 
 
 

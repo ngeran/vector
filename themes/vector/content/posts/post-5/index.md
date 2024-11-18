@@ -5,6 +5,7 @@ draft = false
 summary = 'This is the BGP Summary'
 tags = ["BGP"]
 featured_image = '/post-1.jpg'
+author = 'nikos'
 +++
 
 

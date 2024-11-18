@@ -22,8 +22,8 @@
       </div>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-    {{ .Content }}
-    {{ range .Pages }}
+    {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }}
+    {{ range $paginator.Pages }}
       <!-- CARD STARTS -->
       <div class="rounded overflow-hidden shadow-lg flex flex-col">
           <a href="#"></a>
@@ -68,8 +68,12 @@
           </div>
       </div>
       {{ end }}
-      <!-- CARD ENDS -->
+         <!-- CARD ENDS -->
   </div>
+      <!-- POSTS ENDS -->
+        <!-- Hugo's default pagination template. -->
+        {{ partial "pagination.html" . }}               
+    </div>
 </div>
 
 </section>

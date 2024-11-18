@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/tags/bgp/</loc>
+    <lastmod>2024-10-12T08:45:08+03:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/posts/post-5/</loc>
     <lastmod>2024-10-12T08:45:08+03:00</lastmod>
   </url><url>
@@ -9,6 +12,9 @@
     <lastmod>2024-10-12T08:45:08+03:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2024-10-12T08:45:08+03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-10-12T08:45:08+03:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/new/</loc>
@@ -24,9 +30,6 @@
     <lastmod>2024-10-11T16:11:35+03:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/posts/</loc>
-    <lastmod>2024-10-11T16:11:35+03:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-10-11T16:11:35+03:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/blue/</loc>

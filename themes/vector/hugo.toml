@@ -1,6 +1,7 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-US'
 title = 'Main hugo.toml overites this file'
+paginate = 3
 
 [[menus.main]]
 name = 'Home'
@@ -41,4 +42,3 @@ weight = 30
   disableAliases = false
   pagerSize = 10
   path = 'page'
-  paginate = 3
