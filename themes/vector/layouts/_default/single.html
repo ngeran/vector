@@ -11,6 +11,16 @@
     <main class="grow">
       <article>
         <div id="hero" class="h-[150px] md:h-[200px]"></div>
+        <!--Background Image-->
+       <!-- {{ if .Params.featured_image }}
+        <div class="fixed inset-x-0 top-0 h-[800px]  nozoom" style="background-image:url('{{ .Params.featured_image | relURL }}');">
+          <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+          </div>
+          <div class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+          </div>
+      </div>
+      {{ end }}-->
+        <!--Background Image-->
         <header class="mt-5 max-w-prose">
           <h1 class="mt-0 text-4xl font-extrabold text-[#5e81ac] dark:text-neutral">{{.Title}}</h1>
           <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
@@ -30,10 +40,10 @@
           </div>
           <!--Author-->
           <div class="flex author">
-            <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4 medium-zoom-image" width="96" height="96" alt="ngeranio a.k.a nikos" src="{{ .Params.author_image }}">
+            <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4 medium-zoom-image" width="96" height="96" alt="ngeranio a.k.a nikos" src="{{ .Site.Params.author.image }}">
             <div class="place-self-center">
               <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">Author</div>
-              <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">{{ .Params.author }}</div>
+              <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">{{ .Site.Params.author.name }}</div>
               <div class="text-2xl sm:text-lg"></div>
             </div>
           </div>
@@ -46,7 +56,7 @@
         <div class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
           <div class=" ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
             <div class="mt-0 overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
-                <div class="min-w-[220px] py-2 border-dotted list-none  ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600 text-xs">
+                <div class="min-w-[220px] py-2 border-dotted list-none  ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600 text-sm">
                   {{.TableOfContents}}
                 </div>
             </div>

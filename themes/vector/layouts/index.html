@@ -12,7 +12,7 @@
            {{ partial "nav.html" .}}
            <!-- Hero Section -->
             <!-- Background Image-->
-            <div style="background-image: url('.../img/hero.jpg');" class="flex flex-col items-center justify-center h-[calc(100vh-200px)] min-h-[400px] bg-contain md:bg-cover bg-center bg-no-repeat ">
+            <div style="background-image: url('../img/hero.jpg');" class="flex flex-col items-center justify-center h-[calc(100vh-400px)] min-h-[400px] bg-contain md:bg-cover bg-center bg-no-repeat ">
               <!-- Avatar or Logo Image Wrapper-->
               <div class="bg-white/30 py-2 px-4 rounded-full text-center backdrop-blur-md">
                   <!-- Avatar or Logo -->
@@ -21,16 +21,18 @@
                   
                    </div>
                    <!-- Brand and sescription-->
-                  </div class="flex flex-col space-y-10 lg:mt-16">
+                  </div class="flex flex-col space-y-10 lg:mt-16 ">
                   <!-- Brand Name -->
-                  <h1 class="text-[#d8dee9] text-3xl mt-3 font-semibold text-center">{{ site.Title }}</h1>
+                  <h1 class="text-[#4c566a] text-3xl mt-3 font-semibold text-center">{{ .Site.Params.author.headline }}</h1>
                   <!-- Brand Description-->
-                  <p class="max-w-md mx-auto text-lg text-center text-[#eceff4]">
-                    This is the Description section of the landign page.
+                  <p class="max-w-screen-xl mx-auto px-32 text-lg sm:p-10 md:p-16 text-[#eceff4] text-center ">
+                    {{ .Site.Params.author.bio }}
                   </p>
                    <div>
               </div>
             </div>
+            </div>
+        </div>
    </header>
     <main>
 <!--Recent Posts-->
