@@ -26,17 +26,41 @@ Tags | Custom [vector] Hugo Simple Theme
          
          
  
-    <ul class="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 rounded-2xl">
-    <li class="flex items-center p-1 text-sm gap-x-2 text-[#88c0d0] transition-all duration-200 hover:bg-[#2e3440] hover:text-[#5e81ac] rounded-lg px-2 py-1 font-medium">
-      <a class="flex items-center" href="/">Home</a>
+    <ul class="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 rounded-2xl text-[#5e81ac]">
+    <li class="group relative items-center p-1 text-lg gap-x-2  transition-all duration-200 hover:bg-[#2e3440] hover:text-[#5e81ac] rounded-lg px-2 py-1">
+      <div class="flex flex-col space-y-3">
+      <a class="flex items-center hover:text-primary-600 dark:hover:text-primary-400" href="/"><p class="text-lg font-normal" title="Home">Home </p>
+    </a>
+    </div>
     </li>
-    <li class="flex items-center p-1 text-sm gap-x-2 text-[#88c0d0] transition-all duration-200 hover:bg-[#2e3440] hover:text-[#5e81ac] rounded-lg px-2 py-1 font-medium">
-      <a class="flex items-center" href="/posts/">Posts</a>
+    <li class="group relative items-center p-1 text-lg gap-x-2  transition-all duration-200 hover:bg-[#2e3440] hover:text-[#5e81ac] rounded-lg px-2 py-1">
+      <div class="flex flex-col space-y-3">
+      <a class="flex items-center hover:text-primary-600 dark:hover:text-primary-400" href="/posts/"><p class="text-lg font-normal" title="Posts">Posts </p>
+    </a>
+    </div>
+        <ul class="absolute hidden group-hover:block p-3 mt-1 rounded-xl backdrop-blur shadow-2xl">
+    <li class="group relative items-center p-1 text-lg gap-x-2  transition-all duration-200 hover:bg-[#2e3440] hover:text-[#5e81ac] rounded-lg px-2 py-1">
+      <div class="flex flex-col space-y-3">
+      <a class="flex items-center hover:text-primary-600 dark:hover:text-primary-400" href="/tags/bgp/"><p class="text-lg font-normal" title="bgp">bgp </p>
+    </a>
+    </div>
     </li>
-    <li class="flex items-center p-1 text-sm gap-x-2 text-[#88c0d0] transition-all duration-200 hover:bg-[#2e3440] hover:text-[#5e81ac] rounded-lg px-2 py-1 font-medium">
-      <a class="flex items-center" aria-current="page" class="active" href="/tags/">Tags</a>
+    <li class="group relative items-center p-1 text-lg gap-x-2  transition-all duration-200 hover:bg-[#2e3440] hover:text-[#5e81ac] rounded-lg px-2 py-1">
+      <div class="flex flex-col space-y-3">
+      <a class="flex items-center hover:text-primary-600 dark:hover:text-primary-400" href="/tags/ospf/"><p class="text-lg font-normal" title="o.s.p.f">o.s.p.f </p>
+    </a>
+    </div>
+    </li>
+        </ul>
+    </li>
+    <li class="group relative items-center p-1 text-lg gap-x-2  transition-all duration-200 hover:bg-[#2e3440] hover:text-[#5e81ac] rounded-lg px-2 py-1">
+      <div class="flex flex-col space-y-3">
+      <a class="flex items-center hover:text-primary-600 dark:hover:text-primary-400" aria-current="page" class="active" href="/tags/"><p class="text-lg font-normal" title="Tags">Tags </p>
+    </a>
+    </div>
     </li>
     </ul>
+
 
       </div>
     </div>
@@ -102,12 +126,14 @@ Tags | Custom [vector] Hugo Simple Theme
 
   </main>
   <footer>
-    <footer class="mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8 text-center">
-    <div class="border-t border-[#4c566a] w-[620px] py-10 mx-auto">
-        <span class="text-[#5e81ac]">ngeran[</span><span class="text-[#ebcb8b]">io</span><span class="text-[#5e81ac]">]</span>
+    <footer class="mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8 text-center pt-5">
+    <div class="flex flex-col items-center">
+        
+        <div id="logo">
+            <span class="text-[#5e81ac]">ngeran[</span><span class="text-[#ebcb8b]">io</span><span class="text-[#5e81ac]">]</span>
+        </div>
         <p class="mt-5 text-center text-sm leading-6 text-slate-500">© Copyright 2024. All rights reserved.</p>
-        <div class="mt-8 flex items-center justify-center space-x-4 text-sm font-semibold leading-6 text-slate-700"><a
-                href="/privacy-policy">Privacy policy</a>
+        <div class="mt-4 flex items-center justify-center space-x-4 text-sm font-semibold leading-6 text-slate-700"><a href="/privacy-policy">Privacy policy</a>
             <div class="h-4 w-px bg-slate-500/20"></div><a href="/changelog">Changelog</a>
         </div>
     </div>
