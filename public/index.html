@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
-	<meta name="generator" content="Hugo 0.138.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.139.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -23,93 +23,114 @@ Custom [vector] Hugo Simple Theme
         
          <div class="">
             
-            
-<nav class="flex max-w-screen-lg px-4 py-2 mx-auto bg-[#d8dee9] bg-opacity-10 fixed inset-x-0 top-3 shadow lg:px-8 lg:py-3 backdrop-blur-lg backdrop-saturate-150 z-1000 rounded-2xl">
-    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-      <div class="relative flex items-center justify-between h-8">
-        
-        <div class="container flex flex-wrap items-center justify-between mx-auto text-black">
-        
-        <div class="absolute inset-y-0 left-0 flex items-end sm:hidden">
-          <button type="button" class="text-white inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
-            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-        </div>
-        
-        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-          <div class="flex-shrink-0 text-white text-xl">
-            <a href="/" class="text-lg" ><span class="text-[#5e81ac]">ngeran[</span><span class="text-[#ebcb8b]">io</span><span class="text-[#5e81ac]">]</span></a>
-          </div>
-          <div class="hidden sm:block sm:ml-6">
-            <div class="flex space-x-4">
-              
-                <div class="relative">
-                  <a href="/" class="text-[#5e81ac] px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">Home</a>
-                  
-                </div>
-              
-                <div class="relative">
-                  <a href="/posts/" class="text-[#5e81ac] px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">Posts</a>
-                  
-                    <div class="absolute left-0 hidden mt-1 space-y-2 bg-gray-800 text-white p-3 rounded-md shadow-lg">
-                      
-                        <a href="/tags/bgp/" class="block text-sm hover:bg-gray-700 rounded-md px-3 py-2">bgp</a>
-                      
-                        <a href="/tags/ospf/" class="block text-sm hover:bg-gray-700 rounded-md px-3 py-2">o.s.p.f</a>
-                      
-                    </div>
-                  
-                </div>
-              
-                <div class="relative">
-                  <a href="/tags/" class="text-[#5e81ac] px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">Tags</a>
-                  
-                </div>
-              
-            </div>
-          </div>
-        </div>
+            <nav class="max-w-screen-lg p-4 sticky shadow-lg bg-[#d8dee9] bg-opacity-10 top-3 backdrop-blur-lg backdrop-saturate-150 z-10 rounded-2xl mx-auto lg:px-8  lg:py-3">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <div class=" text-xl ">
+        <a href="/" class="text-lg" ><span class="text-[#5e81ac]">ngeran[</span><span class="text-[#ebcb8b]">io</span><span class="text-[#5e81ac]">]</span></a>
       </div>
+  
+      
+      <div class="hidden lg:flex space-x-6">
+        
+          <div class="relative group">
+            <a href="/" class="text-[#5e81ac] hover:text-[#ebcb8b]">Home</a>
+  
+            
+          </div>
+        
+          <div class="relative group">
+            <a href="/posts/" class="text-[#5e81ac] hover:text-[#ebcb8b]">Posts</a>
+  
+            
+              <div class="absolute left-0 hidden mt-2 space-y-2 bg-gray-700 p-4 group-hover:block">
+                
+                  <div>
+                    <a href="/bgp/" class="text-[#5e81ac] hover:text-gray-300">bgp</a>
+                  </div>
+                
+                  <div>
+                    <a href="/ospf/" class="text-[#5e81ac] hover:text-gray-300">o.s.p.f</a>
+                  </div>
+                
+              </div>
+            
+          </div>
+        
+          <div class="relative group">
+            <a href="" class="text-[#5e81ac] hover:text-[#ebcb8b]">Projects</a>
+  
+            
+          </div>
+        
+      </div>
+  
+      
+      <div class="lg:hidden">
+        <button id="hamburger" class="block text-[#5e81ac] focus:outline-none">
+          <div class="w-6 h-0.5 bg-white mb-1 transition-all duration-300" id="bar1"></div>
+          <div class="w-6 h-0.5 bg-white mb-1 transition-all duration-300" id="bar2"></div>
+          <div class="w-6 h-0.5 bg-white transition-all duration-300" id="bar3"></div>
+        </button>
       </div>
     </div>
   
     
-    <div class="sm:hidden" id="mobile-menu">
-      <div class="space-y-1 px-2 pt-2 pb-3">
+    <div id="mobileMenu" class="lg:hidden hidden bg-gray-800">
+      <div class="p-4">
         
-          <a href="/" class="text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
-          
+          <div class="relative group">
+            <a href="/" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-700 rounded">Home</a>
+  
+            
+          </div>
         
-          <a href="/posts/" class="text-white block px-3 py-2 rounded-md text-base font-medium">Posts</a>
-          
-            <div class="space-y-1 ml-4">
-              
-                <a href="/tags/bgp/" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium">bgp</a>
-              
-                <a href="/tags/ospf/" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium">o.s.p.f</a>
-              
-            </div>
-          
+          <div class="relative group">
+            <a href="/posts/" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-700 rounded">Posts</a>
+  
+            
+              <div class="hidden mt-2 space-y-2 bg-gray-700 p-4 group-hover:block">
+                
+                  <div>
+                    <a href="/bgp/" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-600 rounded">bgp</a>
+                  </div>
+                
+                  <div>
+                    <a href="/ospf/" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-600 rounded">o.s.p.f</a>
+                  </div>
+                
+              </div>
+            
+          </div>
         
-          <a href="/tags/" class="text-white block px-3 py-2 rounded-md text-base font-medium">Tags</a>
-          
+          <div class="relative group">
+            <a href="" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-700 rounded">Projects</a>
+  
+            
+          </div>
         
       </div>
     </div>
   </nav>
   
+  
   <script>
-    const button = document.querySelector('button');
-    const menu = document.getElementById('mobile-menu');
-    button.addEventListener('click', () => {
-      const isExpanded = button.getAttribute('aria-expanded') === 'true' || false;
-      button.setAttribute('aria-expanded', !isExpanded);
-      menu.classList.toggle('hidden');
+    const hamburger = document.getElementById("hamburger");
+    const bars = [document.getElementById("bar1"), document.getElementById("bar2"), document.getElementById("bar3")];
+    const mobileMenu = document.getElementById("mobileMenu");
+  
+    hamburger.addEventListener("click", () => {
+      
+      mobileMenu.classList.toggle("hidden");
+  
+      
+      bars[0].classList.toggle("rotate-45", mobileMenu.classList.contains("hidden"));
+      bars[1].classList.toggle("opacity-0", mobileMenu.classList.contains("hidden"));
+      bars[2].classList.toggle("rotate-135", mobileMenu.classList.contains("hidden"));
     });
   </script>
+  
+  
            
             
             <div style="background-image: url('img/hero.jpg');" class="flex flex-col items-center justify-center h-[calc(100vh-100px)] min-h-[500px] bg-contain md:bg-cover bg-center bg-no-repeat ">

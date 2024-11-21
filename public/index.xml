@@ -10,6 +10,13 @@
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Finite State Machine</title>
+      <link>http://localhost:1313/bgp/fsm/</link>
+      <pubDate>Sat, 12 Oct 2024 08:45:08 +0300</pubDate>
+      <guid>http://localhost:1313/bgp/fsm/</guid>
+      <description>&lt;p&gt;This article explains the BGP-FSM, the different states during the BGP neighbor negotiation and is based on Based on RFC 4271.  Unlike IGP, BGP does not have its own transport protocol, the BGP peering sessions are manually defined and rely on TCP. TCP eliminates the need to implement explicit update fragmentation, retransmission, acknowledgement, and sequencing.&lt;/p&gt;&#xA;&lt;p&gt;BGP listens on TCP port 179 and BGP MUST maintain a separate FSM for each configured peer.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Finite State Machine</title>
       <link>http://localhost:1313/posts/post-5/</link>
       <pubDate>Sat, 12 Oct 2024 08:45:08 +0300</pubDate>
       <guid>http://localhost:1313/posts/post-5/</guid>
@@ -24,6 +31,13 @@
     </item>
     <item>
       <title>Packet Header and Packet Types</title>
+      <link>http://localhost:1313/ospf/packets/</link>
+      <pubDate>Fri, 11 Oct 2024 16:11:35 +0300</pubDate>
+      <guid>http://localhost:1313/ospf/packets/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This section is extremely important.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;OSPF has it’s own IP protocol 89 (L3). Besides Virtual links an OSPF packet usually travels a single hop ( TTL =1). All OSPFv2 packets have a common 24-byte header, that contains all information necessary to determine whether OSPF speaking router should accept the packet. The header consists of the following fields:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;0                   1                   2                   3&#xA;0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|   Version #   |     Type      |         Packet length         |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                          Router ID                            |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                           Area ID                             |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|           Checksum            |             AuType            |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                       Authentication                          |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                       Authentication                          |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;&#xA;&lt;li&gt;Version #: The current OSPF version number, either 2 or 3.&lt;/li&gt;&#xA;&lt;li&gt;Type: Type of OSPF packet ( look below for packet details ).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;packet-types.png&#34; alt=&#34;Packet Types&#34;&gt;&#xA;Figure 1. Packet Types&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Packet Header and Packet Types</title>
       <link>http://localhost:1313/posts/post-4/</link>
       <pubDate>Fri, 11 Oct 2024 16:11:35 +0300</pubDate>
       <guid>http://localhost:1313/posts/post-4/</guid>
@@ -35,6 +49,41 @@
       <pubDate>Fri, 11 Oct 2024 16:11:35 +0300</pubDate>
       <guid>http://localhost:1313/posts/post-7/</guid>
       <description>This is the Post 4 Summary</description>
+    </item>
+    <item>
+      <title>Type 5 LSA - External</title>
+      <link>http://localhost:1313/ospf/type-5-lsa/</link>
+      <pubDate>Sat, 05 Oct 2024 16:12:05 +0300</pubDate>
+      <guid>http://localhost:1313/ospf/type-5-lsa/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;</description>
+    </item>
+    <item>
+      <title>Type 4 LSA - Network Summary</title>
+      <link>http://localhost:1313/ospf/type-4-lsa/</link>
+      <pubDate>Sat, 05 Oct 2024 16:11:44 +0300</pubDate>
+      <guid>http://localhost:1313/ospf/type-4-lsa/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;</description>
+    </item>
+    <item>
+      <title>Type 3 LSA - Summary</title>
+      <link>http://localhost:1313/ospf/type-3-lsa/</link>
+      <pubDate>Sat, 05 Oct 2024 16:11:39 +0300</pubDate>
+      <guid>http://localhost:1313/ospf/type-3-lsa/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;</description>
+    </item>
+    <item>
+      <title>Type 2 LSA - Network</title>
+      <link>http://localhost:1313/ospf/type-2-lsa/</link>
+      <pubDate>Sat, 05 Oct 2024 16:11:35 +0300</pubDate>
+      <guid>http://localhost:1313/ospf/type-2-lsa/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;</description>
+    </item>
+    <item>
+      <title>O.S.P.F Type 1 -Router</title>
+      <link>http://localhost:1313/ospf/type-1-lsa/</link>
+      <pubDate>Sat, 05 Oct 2024 08:45:39 +0300</pubDate>
+      <guid>http://localhost:1313/ospf/type-1-lsa/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;</description>
     </item>
     <item>
       <title>Post 3</title>
