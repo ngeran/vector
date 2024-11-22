@@ -19,13 +19,13 @@ paginate = 6
 [[menus.main]]
   name = "o.s.p.f"
   parent = "Posts"
-  pageRef = "ospf"
+  pageRef = "routing/ospf"
   weight = 20
 
 [[menus.main]]
   name = "bgp"
   parent = "Posts"
-  pageRef = "bgp"
+  pageRef = "routing/bgp"
   weight = 20
 
 [[menus.main]]

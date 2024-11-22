@@ -6,42 +6,14 @@
     <description>Recent content in New on ngeran[io]</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 11 Oct 2024 16:11:35 +0300</lastBuildDate>
+    <lastBuildDate>Fri, 22 Nov 2024 13:14:14 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/new/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Packet Header and Packet Types</title>
-      <link>http://localhost:1313/ospf/packets/</link>
-      <pubDate>Fri, 11 Oct 2024 16:11:35 +0300</pubDate>
-      <guid>http://localhost:1313/ospf/packets/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This section is extremely important.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;OSPF has it’s own IP protocol 89 (L3). Besides Virtual links an OSPF packet usually travels a single hop ( TTL =1). All OSPFv2 packets have a common 24-byte header, that contains all information necessary to determine whether OSPF speaking router should accept the packet. The header consists of the following fields:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;0                   1                   2                   3&#xA;0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|   Version #   |     Type      |         Packet length         |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                          Router ID                            |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                           Area ID                             |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|           Checksum            |             AuType            |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                       Authentication                          |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                       Authentication                          |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;&#xA;&lt;li&gt;Version #: The current OSPF version number, either 2 or 3.&lt;/li&gt;&#xA;&lt;li&gt;Type: Type of OSPF packet ( look below for packet details ).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;img src=&#34;packet-types.png&#34; alt=&#34;Packet Types&#34;&gt;&#xA;Figure 1. Packet Types&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Type 5 LSA - External</title>
-      <link>http://localhost:1313/ospf/type-5-lsa/</link>
-      <pubDate>Sat, 05 Oct 2024 16:12:05 +0300</pubDate>
-      <guid>http://localhost:1313/ospf/type-5-lsa/</guid>
-      <description>&lt;p&gt;&lt;em&gt;Originated by the ASBR, describes networks external to OSPF domain and has domain flooding scope.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;pre class=&#34;wp-block-code&#34;&gt;&lt;code&gt;&#xA;0                   1                   2                   3&#xA;0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|            LS age             |     Options   |      5        |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                        Link State ID                          |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                     Advertising Router                        |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                     LS sequence number                        |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|         LS checksum           |             length            |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                         Network Mask                          |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|E|     0       |                  metric                       |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                      Forwarding address                       |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                      External Route Tag                       |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|E|    TOS      |                TOS  metric                    |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                      Forwarding address                       |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                      External Route Tag                       |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p id=&#34;33bf&#34;&gt;&lt;strong&gt;Network Mask&lt;/strong&gt;: Represents the subnet mask associated with the advertised network.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Type 4 LSA - Network Summary</title>
-      <link>http://localhost:1313/ospf/type-4-lsa/</link>
-      <pubDate>Sat, 05 Oct 2024 16:11:44 +0300</pubDate>
-      <guid>http://localhost:1313/ospf/type-4-lsa/</guid>
-      <description>&lt;p&gt;&lt;em&gt;Originated by ABR and has Area Scope&lt;/em&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Describe the location of a router that is injecting external routes into OSPF. The ASBR will generate a Type 1 LSA with the E bit set, when this LSA is received from other ABRs the Router Type 1 LSA will be converted to a Type 4 LSA when it is flooded into other Areas to let other router know how to reach the External route through the ASBR&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Type 3 LSA - Summary</title>
-      <link>http://localhost:1313/ospf/type-3-lsa/</link>
-      <pubDate>Sat, 05 Oct 2024 16:11:39 +0300</pubDate>
-      <guid>http://localhost:1313/ospf/type-3-lsa/</guid>
-      <description>&lt;pre class=&#34;wp-block-code&#34;&gt;&lt;code&gt;&#xA;0                   1                   2                   3&#xA;0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|            LS age             |     Options   |       3       |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                        Link State ID                          |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                     Advertising Router                        |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                     LS sequence number                        |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|         LS checksum           |             length            |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|                         Network Mask                          |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|      0        |                  metric                       |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;|     TOS       |                TOS  metric                    |&#xA;+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;blockquote class=&#34;wp-block-quote is-layout-flow wp-block-quote-is-layout-flow&#34;&gt;&#xA;&lt;p&gt;&lt;em&gt;Originated by the ABR — has area scope&lt;/em&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Type 2 LSA - Network</title>
-      <link>http://localhost:1313/ospf/type-2-lsa/</link>
-      <pubDate>Sat, 05 Oct 2024 16:11:35 +0300</pubDate>
-      <guid>http://localhost:1313/ospf/type-2-lsa/</guid>
-      <description>&lt;p&gt;&lt;em&gt;Originated by the Designated Router and has Area Local Scope&lt;/em&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;For each transit broadcast or NBMA networks the designated router originates a Network LSA only if it has at least one full adjacency to at least one other router. The Network LSA flooded throughout the area that contains the network and describes all the routers attached to the network.&lt;/p&gt;&#xA;&lt;blockquote class=&#34;wp-block-quote is-layout-flow wp-block-quote-is-layout-flow&#34;&gt;&#xA;&lt;p&gt;&lt;em&gt;The Designated Router includes itself int the router list&lt;/em&gt;&lt;/p&gt;</description>
+      <link>http://localhost:1313/routing/ospf/packet-types/</link>
+      <pubDate>Fri, 22 Nov 2024 13:14:14 -0500</pubDate>
+      <guid>http://localhost:1313/routing/ospf/packet-types/</guid>
+      <description>Packet Header and Packet Types</description>
     </item>
   </channel>
 </rss>

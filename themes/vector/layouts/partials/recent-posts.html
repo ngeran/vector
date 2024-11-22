@@ -22,13 +22,15 @@
       </div>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-    {{ range first 6 (where .Site.RegularPages "Section" "posts") }}
+    {{ range first 6 (where .Site.RegularPages "Section" "routing") }}
       <!-- CARD STARTS -->
       <div class="rounded overflow-hidden shadow-lg flex flex-col">
           <a href="#"></a>
           <div class="relative"><a href="#">
-                  <img class="w-full"
-                      src="{{ .Params.featured_image }}" alt="">
+            <!-- Featured Image-->
+            {{ with .Resources.GetMatch "featured.png" }}
+                  <img class="w-full overflow-hidden" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}">
+                  {{ end }}
                   <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
               </a>
           </div>
