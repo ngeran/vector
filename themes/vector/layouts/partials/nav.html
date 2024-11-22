@@ -1,15 +1,16 @@
-<nav class="max-w-screen-lg p-4 sticky shadow-lg bg-[#d8dee9] bg-opacity-10 top-3 backdrop-blur-lg backdrop-saturate-150 z-10 rounded-2xl mx-auto lg:px-8  lg:py-3">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <nav class="relative max-w-[64rem] ml-auto mr-auto top-3 p-4  lg:px-8  lg:py-3 shadow-lg bg-[#d8dee9] bg-opacity-10 backdrop-blur-lg backdrop-saturate-150 z-50 rounded-2xl  ">
+    <div class="mx-auto flex items-center justify-between">
       <!-- Logo or Branding -->
       <div class=" text-xl ">
-        <a href="/" class="text-lg" ><span class="text-[#5e81ac]">ngeran[</span><span class="text-[#ebcb8b]">io</span><span class="text-[#5e81ac]">]</span></a>
+        <a href="/" class="text-xl" ><span class="text-[#5e81ac]">ngeran[</span><span class="text-[#ebcb8b]">io</span><span class="text-[#5e81ac]">]</span></a>
       </div>
   
       <!-- Desktop Menu -->
       <div class="hidden lg:flex space-x-6">
         {{ range .Site.Menus.main }}
           <div class="relative group">
-            <a href="{{ .URL }}" class="text-[#5e81ac] hover:text-[#ebcb8b]">{{ .Name }}</a>
+            <a href="{{ .URL }}" class="text-[#5e81ac] hover:text-[#ebcb8b] logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom">{{ .Name }}</a>
   
             {{ if .HasChildren }}
               <div class="absolute left-0 hidden mt-2 space-y-2 bg-gray-700 p-4 group-hover:block">
@@ -55,6 +56,11 @@
       </div>
     </div>
   </nav>
+
+</div>
+
+
+
   
   
   <script>

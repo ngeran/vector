@@ -1,4 +1,4 @@
-name = 'Theme name'
+name = 'Vector'
 license = 'MIT'
 licenselink = 'https://github.com/owner/repo/LICENSE'
 description = 'Theme description'
@@ -21,7 +21,7 @@ authors = [
 
 # If the theme has a single author
 [author]
-  name = 'Your name'
+  name = 'nikos'
   homepage = 'Your website'
 
 # If porting an existing theme

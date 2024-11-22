@@ -1,6 +1,6 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
-title = 'Custom [vector] Hugo Simple Theme'
+title = 'ngeran[io]'
 theme = 'vector'
 paginate = 6
 
@@ -8,14 +8,13 @@ paginate = 6
 # -- Site Menu --
 
 [[menus.main]]
-name = 'Home'
-pageRef = '/'
-weight = 10
+ name = 'Home'
+ pageRef = '/'
+ weight = 10
 
 [[menus.main]]
-name = 'Posts'
-pageRef = '/posts'
-weight = 20
+ name = 'Posts'
+ weight = 20
 
 [[menus.main]]
   name = "o.s.p.f"
@@ -29,21 +28,23 @@ weight = 20
   pageRef = "bgp"
   weight = 20
 
-  [[menus.main]]
+[[menus.main]]
   name = "Projects"
   pageRef = '/projects'
   weight = 30
 
 
-
+ [params.site]
+  logo = "/site_logo.png"
 
 
 # -- Markup --
 # These settings are required for the theme to function.
 
-[goldmark]
-[goldmark.renderer]
-  unsafe = true
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [highlight]
   noClasses = false
@@ -53,12 +54,12 @@ weight = 20
   endLevel = 4
 
 [params.author]
-   name = "ngeranio a.k.a nikos"
-#  # email = "youremail@example.com"
+    name = "ngeranio a.k.a nikos"
+#   email = "youremail@example.com"
 #   image = "/io.png"
-   imageQuality = 96
-#   headline = "Let's Talk About Networking Stuff"
-   #bio = "Welcome to my blog of networking stuff. By day I’m network engineer, and in my spare time I study towards the JNCIE-SP. The JNCIE-SP journey is a long one. It is time consuming, requires dedication and a tons of hard work. During my preparations, I will put my study notes online to help myself study and maybe help somebody else along the way. Enjoy 🙂"
+    imageQuality = 96
+    headline = "Let's Talk Networking"
+    bio = "Welcome to my blog of networking stuff. By day I’m network engineer, and in my spare time I study towards the JNCIE-SP. The JNCIE-SP journey is a long one. It is time consuming, requires dedication and a tons of hard work. During my preparations, I will put my study notes online to help myself study and maybe help somebody else along the way. Enjoy 🙂"
 #   links = [
 #     { email = "mailto:hello@your_domain.com" },
 #     { link = "https://link-to-some-website.com/" },

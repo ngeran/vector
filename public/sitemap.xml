@@ -2,25 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2024-10-12T08:45:08+03:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/bgp/</loc>
     <lastmod>2024-10-12T08:45:08+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/bgp/</loc>
-    <lastmod>2024-10-12T08:45:08+03:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/bgp/fsm/</loc>
-    <lastmod>2024-10-12T08:45:08+03:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/post-5/</loc>
-    <lastmod>2024-10-12T08:45:08+03:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/post-6/</loc>
-    <lastmod>2024-10-12T08:45:08+03:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-10-12T08:45:08+03:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-10-12T08:45:08+03:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/ospf/</loc>
@@ -35,13 +23,10 @@
     <loc>http://localhost:1313/ospf/packets/</loc>
     <lastmod>2024-10-11T16:11:35+03:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/post-4/</loc>
-    <lastmod>2024-10-11T16:11:35+03:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/post-7/</loc>
-    <lastmod>2024-10-11T16:11:35+03:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/posts/</loc>
+    <lastmod>2024-10-11T16:11:35+03:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-10-11T16:11:35+03:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/ospf/type-5-lsa/</loc>
@@ -58,27 +43,6 @@
   </url><url>
     <loc>http://localhost:1313/ospf/type-1-lsa/</loc>
     <lastmod>2024-10-05T08:45:39+03:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/blue/</loc>
-    <lastmod>2023-03-15T11:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/green/</loc>
-    <lastmod>2023-03-15T11:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/post-3/</loc>
-    <lastmod>2023-03-15T11:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/red/</loc>
-    <lastmod>2023-03-15T11:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/post-2/</loc>
-    <lastmod>2023-02-15T10:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/post-1/</loc>
-    <lastmod>2023-01-15T09:00:00-07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2023-01-01T08:00:00-07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url>

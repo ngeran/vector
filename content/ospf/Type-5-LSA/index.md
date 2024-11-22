@@ -2,6 +2,7 @@
 title = 'Type 5 LSA - External'
 date = 2024-10-05T16:12:05+03:00
 tags = ["OSPF","Posts","New"]
+featured_image = 'featured.png'
 draft = false
 +++
 
