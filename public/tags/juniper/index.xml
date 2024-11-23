@@ -6,8 +6,15 @@
     <description>Recent content in Juniper on ngeran[io]</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Nov 2024 13:13:56 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 22 Nov 2024 13:14:14 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/juniper/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Finite State Machine</title>
+      <link>http://localhost:1313/routing/bgp/fsm/</link>
+      <pubDate>Fri, 22 Nov 2024 13:14:14 -0500</pubDate>
+      <guid>http://localhost:1313/routing/bgp/fsm/</guid>
+      <description>This article explains the different states during the BGP neighbor negotiation</description>
+    </item>
     <item>
       <title>Type 5 LSA - Network</title>
       <link>http://localhost:1313/routing/ospf/lsa5/</link>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ngeran[io]</title>
+    <link>http://localhost:1313/routing/bgp/</link>
+    <description>Recent content on ngeran[io]</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Nov 2024 13:14:14 -0500</lastBuildDate>
+    <atom:link href="http://localhost:1313/routing/bgp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Finite State Machine</title>
+      <link>http://localhost:1313/routing/bgp/fsm/</link>
+      <pubDate>Fri, 22 Nov 2024 13:14:14 -0500</pubDate>
+      <guid>http://localhost:1313/routing/bgp/fsm/</guid>
+      <description>This article explains the different states during the BGP neighbor negotiation</description>
+    </item>
+  </channel>
+</rss>

@@ -1,7 +1,10 @@
 +++
 title = 'Finite State Machine'
-date = 2024-10-12T08:45:08+03:00
+date = '2024-11-22T13:14:14-05:00'
 draft = false
+tags = ["BGP","Routing","Juniper"]
+featured_image = 'featured.jpg'
+summary = 'This article explains the different states during the BGP neighbor negotiation'
 +++
 
 

@@ -19,13 +19,13 @@ paginate = 6
 [[menus.main]]
   name = "o.s.p.f"
   parent = "Posts"
-  pageRef = "routing/ospf"
+  pageRef = "/routing/bgp"
   weight = 20
 
 [[menus.main]]
   name = "bgp"
   parent = "Posts"
-  pageRef = "routing/bgp"
+  pageRef = "/routing/ospf"
   weight = 20
 
 [[menus.main]]
@@ -56,7 +56,7 @@ paginate = 6
 [params.author]
     name = "ngeranio a.k.a nikos"
 #   email = "youremail@example.com"
-#   image = "/io.png"
+    image = "author/avatar.png"
     imageQuality = 96
     headline = "Let's Talk Networking"
     bio = "Welcome to my blog of networking stuff. By day I’m network engineer, and in my spare time I study towards the JNCIE-SP. The JNCIE-SP journey is a long one. It is time consuming, requires dedication and a tons of hard work. During my preparations, I will put my study notes online to help myself study and maybe help somebody else along the way. Enjoy 🙂"
