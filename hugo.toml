@@ -8,28 +8,28 @@ paginate = 6
 # -- Site Menu --
 
 [[menus.main]]
- name = 'Home'
+ name = '01.home'
  pageRef = '/'
  weight = 10
 
 [[menus.main]]
- name = 'Posts'
+ name = '02.posts'
  weight = 20
 
 [[menus.main]]
   name = "o.s.p.f"
-  parent = "Posts"
-  pageRef = "/routing/bgp"
-  weight = 20
-
-[[menus.main]]
-  name = "bgp"
-  parent = "Posts"
+  parent = "02.posts"
   pageRef = "/routing/ospf"
   weight = 20
 
 [[menus.main]]
-  name = "Projects"
+  name = "bgp"
+  parent = "02.posts"
+  pageRef = "/routing/bgp"
+  weight = 20
+
+[[menus.main]]
+  name = "03.projects"
   pageRef = '/projects'
   weight = 30
 

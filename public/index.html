@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
-	<meta name="generator" content="Hugo 0.138.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.139.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -35,23 +35,23 @@ ngeran[io]
       <div class="hidden lg:flex space-x-6">
         
           <div class="relative group">
-            <a href="/" class="text-[#5e81ac] hover:text-[#ebcb8b] logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom">Home</a>
+            <a href="/" class="text-[#5e81ac] hover:text-[#ebcb8b] logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom">01.home</a>
   
             
           </div>
         
           <div class="relative group">
-            <a href="" class="text-[#5e81ac] hover:text-[#ebcb8b] logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom">Posts</a>
+            <a href="" class="text-[#5e81ac] hover:text-[#ebcb8b] logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom">02.posts</a>
   
             
-              <div class="absolute left-0 hidden mt-4 space-y-2 bg-gray-700 p-4 group-hover:block">
+              <div class="absolute left-0 hidden p-4 space-y-2 bg-gray-700  group-hover:block">
                 
                   <div>
-                    <a href="" class="text-[#5e81ac] hover:text-gray-300">bgp</a>
+                    <a href="/routing/bgp/" class="text-[#5e81ac] hover:text-gray-300">bgp</a>
                   </div>
                 
                   <div>
-                    <a href="/routing/bgp/" class="text-[#5e81ac] hover:text-gray-300">o.s.p.f</a>
+                    <a href="/routing/ospf/" class="text-[#5e81ac] hover:text-gray-300">o.s.p.f</a>
                   </div>
                 
               </div>
@@ -59,7 +59,7 @@ ngeran[io]
           </div>
         
           <div class="relative group">
-            <a href="" class="text-[#5e81ac] hover:text-[#ebcb8b] logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom">Projects</a>
+            <a href="" class="text-[#5e81ac] hover:text-[#ebcb8b] logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom">03.projects</a>
   
             
           </div>
@@ -81,23 +81,23 @@ ngeran[io]
       <div class="p-4">
         
           <div class="relative group">
-            <a href="/" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-700 rounded">Home</a>
+            <a href="/" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-700 rounded">01.home</a>
   
             
           </div>
         
           <div class="relative group">
-            <a href="" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-700 rounded">Posts</a>
+            <a href="" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-700 rounded">02.posts</a>
   
             
               <div class="hidden mt-2 space-y-2 bg-gray-700 p-4 group-hover:block">
                 
                   <div>
-                    <a href="" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-600 rounded">bgp</a>
+                    <a href="/routing/bgp/" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-600 rounded">bgp</a>
                   </div>
                 
                   <div>
-                    <a href="/routing/bgp/" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-600 rounded">o.s.p.f</a>
+                    <a href="/routing/ospf/" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-600 rounded">o.s.p.f</a>
                   </div>
                 
               </div>
@@ -105,7 +105,7 @@ ngeran[io]
           </div>
         
           <div class="relative group">
-            <a href="" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-700 rounded">Projects</a>
+            <a href="" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-700 rounded">03.projects</a>
   
             
           </div>
@@ -161,6 +161,63 @@ ngeran[io]
         </div>
    </header>
     <main>
+      <div class="relative">
+        
+        <button id="menu-button" class="block md:hidden p-2 text-gray-700" aria-label="Toggle Menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      
+        
+        <nav id="menu" class="hidden md:block">
+          <div class="bg-white md:bg-transparent shadow-md md:shadow-none md:flex space-y-4 md:space-y-0">
+            <ul class="space-y-2 md:flex md:space-y-0 md:space-x-6">
+              
+              <li class="relative group">
+                <a href="/" class="block text-gray-700 hover:text-blue-600">01.home</a>
+      
+                
+                
+              </li>
+              
+              <li class="relative group">
+                <a href="" class="block text-gray-700 hover:text-blue-600">02.posts</a>
+      
+                
+                
+                <ul class="hidden group-hover:block absolute bg-white shadow-lg left-0 top-full w-48 space-y-2 p-4">
+                  
+                  <li>
+                    <a href="/routing/bgp/" class="block text-gray-700 hover:text-blue-600">bgp</a>
+      
+                    
+                    
+                  </li>
+                  
+                  <li>
+                    <a href="/routing/ospf/" class="block text-gray-700 hover:text-blue-600">o.s.p.f</a>
+      
+                    
+                    
+                  </li>
+                  
+                </ul>
+                
+              </li>
+              
+              <li class="relative group">
+                <a href="" class="block text-gray-700 hover:text-blue-600">03.projects</a>
+      
+                
+                
+              </li>
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+      
 
 <section class="">
     <div class="max-w-screen-xl mx-auto px-5 sm:p-10 md:p-16 pt-0">
