@@ -8,28 +8,28 @@ paginate = 6
 # -- Site Menu --
 
 [[menus.main]]
- name = '01.home'
+ name = 'home'
  pageRef = '/'
  weight = 10
 
 [[menus.main]]
- name = '02.posts'
+ name = 'posts'
  weight = 20
 
 [[menus.main]]
   name = "o.s.p.f"
-  parent = "02.posts"
+  parent = "posts"
   pageRef = "/routing/ospf"
   weight = 20
 
 [[menus.main]]
   name = "bgp"
-  parent = "02.posts"
+  parent = "posts"
   pageRef = "/routing/bgp"
   weight = 20
 
 [[menus.main]]
-  name = "03.projects"
+  name = "projects"
   pageRef = '/projects'
   weight = 30
 
@@ -37,6 +37,11 @@ paginate = 6
  [params.site]
   logo = "/site_logo.png"
 
+[taxonomies]
+  category = "categories"
+
+[permalinlks]
+  categories = "/:section/:slug"
 
 # -- Markup --
 # These settings are required for the theme to function.
