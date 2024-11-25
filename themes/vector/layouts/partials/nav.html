@@ -13,7 +13,7 @@
             <a href="{{ .URL }}" class="text-[#5e81ac] hover:text-[#ebcb8b] logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom">{{ .Name }}</a>
   
             {{ if .HasChildren }}
-              <div class="absolute left-0 hidden mt-2 space-y-2 bg-gray-700 p-4 group-hover:block">
+              <div class="absolute left-0 hidden p-4 space-y-2 bg-gray-700  group-hover:block">
                 {{ range .Children }}
                   <div>
                     <a href="{{ .URL }}" class="text-[#5e81ac] hover:text-gray-300">{{ .Name }}</a>

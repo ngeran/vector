@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" class="scroll-smooth">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+<meta name="robots" content="noindex, nofollow" />
+<title>
+Type 3 LSA - Network | ngeran[io]
+</title>
+
+    <link rel="stylesheet" href="/css/styles.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-[#242933] dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+  <header>
+    <div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <nav class="relative max-w-[64rem] ml-auto mr-auto top-3 p-4  lg:px-8  lg:py-3 shadow-lg bg-[#d8dee9] bg-opacity-10 backdrop-blur-lg backdrop-saturate-150 z-50 rounded-2xl  ">
+    <div class="mx-auto flex items-center justify-between">
+      
+      <div class=" text-xl ">
+        <a href="/" class="text-xl" ><span class="text-[#5e81ac]">ngeran[</span><span class="text-[#ebcb8b]">io</span><span class="text-[#5e81ac]">]</span></a>
+      </div>
+  
+      
+      <div class="hidden lg:flex space-x-6">
+        
+          <div class="relative group">
+            <a href="/" class="text-[#5e81ac] hover:text-[#ebcb8b] logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom">01.home</a>
+  
+            
+          </div>
+        
+          <div class="relative group">
+            <a href="" class="text-[#5e81ac] hover:text-[#ebcb8b] logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom">02.posts</a>
+  
+            
+              <div class="absolute left-0 hidden p-4 space-y-2 bg-gray-700  group-hover:block">
+                
+                  <div>
+                    <a href="/routing/bgp/" class="text-[#5e81ac] hover:text-gray-300">bgp</a>
+                  </div>
+                
+                  <div>
+                    <a href="/routing/ospf/" class="text-[#5e81ac] hover:text-gray-300">o.s.p.f</a>
+                  </div>
+                
+              </div>
+            
+          </div>
+        
+          <div class="relative group">
+            <a href="" class="text-[#5e81ac] hover:text-[#ebcb8b] logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom">03.projects</a>
+  
+            
+          </div>
+        
+      </div>
+  
+      
+      <div class="lg:hidden">
+        <button id="hamburger" class="block text-[#5e81ac] focus:outline-none">
+          <div class="w-6 h-0.5 bg-white mb-1 transition-all duration-300" id="bar1"></div>
+          <div class="w-6 h-0.5 bg-white mb-1 transition-all duration-300" id="bar2"></div>
+          <div class="w-6 h-0.5 bg-white transition-all duration-300" id="bar3"></div>
+        </button>
+      </div>
+    </div>
+  
+    
+    <div id="mobileMenu" class="lg:hidden hidden bg-gray-800">
+      <div class="p-4">
+        
+          <div class="relative group">
+            <a href="/" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-700 rounded">01.home</a>
+  
+            
+          </div>
+        
+          <div class="relative group">
+            <a href="" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-700 rounded">02.posts</a>
+  
+            
+              <div class="hidden mt-2 space-y-2 bg-gray-700 p-4 group-hover:block">
+                
+                  <div>
+                    <a href="/routing/bgp/" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-600 rounded">bgp</a>
+                  </div>
+                
+                  <div>
+                    <a href="/routing/ospf/" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-600 rounded">o.s.p.f</a>
+                  </div>
+                
+              </div>
+            
+          </div>
+        
+          <div class="relative group">
+            <a href="" class="block py-2 px-4 text-[#5e81ac] hover:bg-gray-700 rounded">03.projects</a>
+  
+            
+          </div>
+        
+      </div>
+    </div>
+  </nav>
+
+</div>
+
+
+
+  
+  
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const bars = [document.getElementById("bar1"), document.getElementById("bar2"), document.getElementById("bar3")];
+    const mobileMenu = document.getElementById("mobileMenu");
+  
+    hamburger.addEventListener("click", () => {
+      
+      mobileMenu.classList.toggle("hidden");
+  
+      
+      bars[0].classList.toggle("rotate-45", mobileMenu.classList.contains("hidden"));
+      bars[1].classList.toggle("opacity-0", mobileMenu.classList.contains("hidden"));
+      bars[2].classList.toggle("rotate-135", mobileMenu.classList.contains("hidden"));
+    });
+  </script>
+  
+  
+  </header>
+  <div class="relative flex flex-col grow">
+    <main class="grow">
+      <article>
+        <div id="hero" class="h-[150px] md:h-[200px]"></div>
+        
+       
+        
+        <header class="mt-5 max-w-prose">
+          <h1 class="mt-0 text-4xl font-extrabold text-[#5e81ac] dark:text-neutral">Type 3 LSA - Network</h1>
+          <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+            <div class="flex flex-row flex-wrap items-center">
+              
+              
+              <time datetime="2024-11-22T13:13:42-05:00">November 22, 2024</time> 
+              <span class="px-2 text-primary-500">.</span>
+              <span>293 words</span>
+              <span class="px-2 text-primary-500">.</span>
+              <span>2 minutes</span>
+            </div>
+            <div class="flex flex-row flex-wrap items-center">
+              
+              
+      <span style="margin-top:0.5rem" class="mr-2" >
+        <span class="flex" style="cursor: pointer;">
+      <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-[#8fbcbb] dark:text-[#5e81ac]">
+        <a href="/tags/ospf/">OSPF</a>
+      </span>
+      </span>
+      </span>
+      <span style="margin-top:0.5rem" class="mr-2" >
+        <span class="flex" style="cursor: pointer;">
+      <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-[#8fbcbb] dark:text-[#5e81ac]">
+        <a href="/tags/lsa/">LSA</a>
+      </span>
+      </span>
+      </span>
+      <span style="margin-top:0.5rem" class="mr-2" >
+        <span class="flex" style="cursor: pointer;">
+      <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-[#8fbcbb] dark:text-[#5e81ac]">
+        <a href="/tags/juniper/">Juniper</a>
+      </span>
+      </span>
+      </span>
+
+
+            </div>
+          </div>
+          
+          <div class="flex author">
+            
+            <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+            alt="ngeranio a.k.a nikos" src="/author/avatar.png" />
+    
+            <div class="place-self-center">
+              <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">Author</div>
+              <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">ngeranio a.k.a nikos</div>
+              <div class="text-2xl sm:text-lg"></div>
+            </div>
+          </div>
+          <div class="mb-5"></div>
+        </header>
+
+        
+        <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+        
+        <div class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+          <div class=" ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+            <div class="mt-0 overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+                <div class="min-w-[220px] py-2 border-dotted list-none  ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600 text-sm">
+                  <nav id="TableOfContents"></nav>
+                </div>
+            </div>
+          </div>
+        </div>
+        
+      <div class="min-w-0 min-h-0 max-w-fit">
+        <div class="article-content max-w-prose mb-20 prose-h3:text-[#5e81ac]">
+           
+        <pre class="wp-block-code"><code>
+0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|            LS age             |     Options   |       3       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                        Link State ID                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                     Advertising Router                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                     LS sequence number                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         LS checksum           |             length            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                         Network Mask                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|      0        |                  metric                       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|     TOS       |                TOS  metric                    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre>
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><em>Originated by the ABR — has area scope</em></p>
+</blockquote>
+<p id="4905">Describes networks outside of the area</p>
+<ul>
+<li><strong>Link State ID:</strong>&nbsp;Identifies the piece of the routing domain that<br>is being described by the LSA</li>
+</ul>
+<pre class="wp-block-code"><code>            LS Type   Link State ID
+            _______________________________________________
+            1         The originating router's Router ID.
+            2         The IP interface address of the
+                      network's Designated Router.
+            3         The destination network's IP address.
+            4         The Router ID of the described AS
+                      boundary router.
+            5         The destination network's IP address.
+</code></pre>
+<ul>
+<li><strong>Advertising Router:</strong>&nbsp;The Router ID of the router that originated the LSA.</li>
+<li><strong>LS Sequence Number:</strong>&nbsp;Used for old or duplicated LSA detection</li>
+<li><strong>LS Checksum:</strong>&nbsp;Checksum of the complete LSA including the header</li>
+<li>plus:</li>
+<li><strong>(4-byte) Network Mask:&nbsp;</strong>Subnet mask of the advertised network. It is used in conjunction with the link-state ID filed, which encapsulates the network address in a Type 3 LSA.</li>
+<li><strong>(1-byte) Reserved ( set to 0):</strong></li>
+<li><strong>(3-byte) Metric:&nbsp;</strong>This field provides the cost of the route to the network destination.When the summary LSA is representing an aggregated route (using the area-range command), this field is set to the largest current metric of the contributing routes.</li>
+<li><strong>(1-byte) ToS (not used):</strong>This field describes any optional ToS information encoded within the network described. The Junos OS does not use this field.</li>
+<li><strong>(3-byte) ToS metric ( not used):</strong></li>
+</ul>
+         
+        </div>
+      </div>
+        </section>
+      </article>
+      </main>
+  </div>
+  <footer>
+    <footer class="mx-auto w-full  max-w-container px-4 sm:px-6 lg:px-8 text-center pt-5 pb-5" >
+     
+    <div class="max-w-screen-xl mx-auto px-5 sm:p-10 md:p-16 pt-0">
+        <div class="border-b border-[#4c566a] mb-5 flex justify-between"></div>
+    </div> 
+    <div class="flex flex-col items-center ">
+        
+        <div id="logo">
+            <span class="text-[#5e81ac]">ngeran[</span><span class="text-[#ebcb8b]">io</span><span class="text-[#5e81ac]">]</span>
+        </div>
+        <p class="mt-5 text-center text-sm leading-6 text-slate-500">© Copyright 2024. All rights reserved.</p>
+        <div class="mt-4 flex items-center justify-center space-x-4 text-sm font-semibold leading-6 text-slate-700"><a href="/privacy-policy">Privacy policy</a>
+            <div class="h-4 w-px bg-slate-500/20"></div><a href="/changelog">Changelog</a>
+        </div>
+    </div>
+</footer>
+  </footer>
+</body>
+</html>
+
