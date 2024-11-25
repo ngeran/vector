@@ -162,6 +162,309 @@ OSPF | ngeran[io]
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
     
     
+      
+      <div class="rounded overflow-hidden shadow-lg flex flex-col">
+          <a href="#"></a>
+          <div class="relative"><a href="#">
+                  <img class="w-full"
+                      src="" alt="">
+                  <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
+              </a>
+          </div>
+          <div class="px-6 py-4 mb-auto">
+              <a href="/ospf/packets/"
+                  class="font-medium text-lg inline-block text-[#4c566a] hover:text-[#8fbcbb] transition duration-500 ease-in-out mb-2">Packet Header and Packet Types</a>
+              <p class="text-[#e5e9f0] text-sm">
+                <blockquote>
+<p>This section is extremely important.</p>
+</blockquote>
+<p>OSPF has it’s own IP protocol 89 (L3). Besides Virtual links an OSPF packet usually travels a single hop ( TTL =1). All OSPFv2 packets have a common 24-byte header, that contains all information necessary to determine whether OSPF speaking router should accept the packet. The header consists of the following fields:</p>
+<pre tabindex="0"><code>0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|   Version #   |     Type      |         Packet length         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                          Router ID                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                           Area ID                             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|           Checksum            |             AuType            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Authentication                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre><ul>
+<li>Version #: The current OSPF version number, either 2 or 3.</li>
+<li>Type: Type of OSPF packet ( look below for packet details ).</li>
+</ul>
+<p><img src="packet-types.png" alt="Packet Types">
+Figure 1. Packet Types</p>
+              </p>
+          </div>
+          <div class="px-6 py-3 flex flex-row items-center justify-between bg-[#2e3440]">
+              <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
+                  <svg height="13px" width="13px" version="1.1" id="Layer_1"
+                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                      y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                      xml:space="preserve">
+                      <g>
+                          <g>
+                              <path
+                                  d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256 c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128 c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z">
+                              </path>
+                          </g>
+                      </g>
+                  </svg>
+                  <span class="ml-1 text-[#8fbcbb]">8 minutes</span>
+              </span>
+
+              <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
+                  <svg class="h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z">
+                      </path>
+                  </svg>
+                  <span class="ml-1 text-[#8fbcbb]">1496 words</span>
+              </span>
+          </div>
+      </div>
+      
+      
+      <div class="rounded overflow-hidden shadow-lg flex flex-col">
+          <a href="#"></a>
+          <div class="relative"><a href="#">
+                  <img class="w-full"
+                      src="featured.png" alt="">
+                  <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
+              </a>
+          </div>
+          <div class="px-6 py-4 mb-auto">
+              <a href="/ospf/type-5-lsa/"
+                  class="font-medium text-lg inline-block text-[#4c566a] hover:text-[#8fbcbb] transition duration-500 ease-in-out mb-2">Type 5 LSA - External</a>
+              <p class="text-[#e5e9f0] text-sm">
+                <p><em>Originated by the ASBR, describes networks external to OSPF domain and has domain flooding scope.</em></p>
+</blockquote>
+<pre class="wp-block-code"><code>
+0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|            LS age             |     Options   |      5        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                        Link State ID                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                     Advertising Router                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                     LS sequence number                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         LS checksum           |             length            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                         Network Mask                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|E|     0       |                  metric                       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                      Forwarding address                       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                      External Route Tag                       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|E|    TOS      |                TOS  metric                    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                      Forwarding address                       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                      External Route Tag                       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre>
+<p id="33bf"><strong>Network Mask</strong>: Represents the subnet mask associated with the advertised network.</p>
+              </p>
+          </div>
+          <div class="px-6 py-3 flex flex-row items-center justify-between bg-[#2e3440]">
+              <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
+                  <svg height="13px" width="13px" version="1.1" id="Layer_1"
+                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                      y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                      xml:space="preserve">
+                      <g>
+                          <g>
+                              <path
+                                  d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256 c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128 c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z">
+                              </path>
+                          </g>
+                      </g>
+                  </svg>
+                  <span class="ml-1 text-[#8fbcbb]">2 minutes</span>
+              </span>
+
+              <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
+                  <svg class="h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z">
+                      </path>
+                  </svg>
+                  <span class="ml-1 text-[#8fbcbb]">261 words</span>
+              </span>
+          </div>
+      </div>
+      
+      
+      <div class="rounded overflow-hidden shadow-lg flex flex-col">
+          <a href="#"></a>
+          <div class="relative"><a href="#">
+                  <img class="w-full"
+                      src="" alt="">
+                  <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
+              </a>
+          </div>
+          <div class="px-6 py-4 mb-auto">
+              <a href="/ospf/type-4-lsa/"
+                  class="font-medium text-lg inline-block text-[#4c566a] hover:text-[#8fbcbb] transition duration-500 ease-in-out mb-2">Type 4 LSA - Network Summary</a>
+              <p class="text-[#e5e9f0] text-sm">
+                <p><em>Originated by ABR and has Area Scope</em></p>
+</blockquote>
+<p>Describe the location of a router that is injecting external routes into OSPF. The ASBR will generate a Type 1 LSA with the E bit set, when this LSA is received from other ABRs the Router Type 1 LSA will be converted to a Type 4 LSA when it is flooded into other Areas to let other router know how to reach the External route through the ASBR</p>
+              </p>
+          </div>
+          <div class="px-6 py-3 flex flex-row items-center justify-between bg-[#2e3440]">
+              <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
+                  <svg height="13px" width="13px" version="1.1" id="Layer_1"
+                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                      y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                      xml:space="preserve">
+                      <g>
+                          <g>
+                              <path
+                                  d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256 c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128 c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z">
+                              </path>
+                          </g>
+                      </g>
+                  </svg>
+                  <span class="ml-1 text-[#8fbcbb]">1 minutes</span>
+              </span>
+
+              <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
+                  <svg class="h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z">
+                      </path>
+                  </svg>
+                  <span class="ml-1 text-[#8fbcbb]">195 words</span>
+              </span>
+          </div>
+      </div>
+      
+      
+      <div class="rounded overflow-hidden shadow-lg flex flex-col">
+          <a href="#"></a>
+          <div class="relative"><a href="#">
+                  <img class="w-full"
+                      src="" alt="">
+                  <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
+              </a>
+          </div>
+          <div class="px-6 py-4 mb-auto">
+              <a href="/ospf/type-3-lsa/"
+                  class="font-medium text-lg inline-block text-[#4c566a] hover:text-[#8fbcbb] transition duration-500 ease-in-out mb-2">Type 3 LSA - Summary</a>
+              <p class="text-[#e5e9f0] text-sm">
+                <pre class="wp-block-code"><code>
+0                   1                   2                   3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|            LS age             |     Options   |       3       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                        Link State ID                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                     Advertising Router                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                     LS sequence number                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         LS checksum           |             length            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                         Network Mask                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|      0        |                  metric                       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|     TOS       |                TOS  metric                    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</code></pre>
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><em>Originated by the ABR — has area scope</em></p>
+              </p>
+          </div>
+          <div class="px-6 py-3 flex flex-row items-center justify-between bg-[#2e3440]">
+              <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
+                  <svg height="13px" width="13px" version="1.1" id="Layer_1"
+                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                      y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                      xml:space="preserve">
+                      <g>
+                          <g>
+                              <path
+                                  d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256 c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128 c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z">
+                              </path>
+                          </g>
+                      </g>
+                  </svg>
+                  <span class="ml-1 text-[#8fbcbb]">2 minutes</span>
+              </span>
+
+              <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
+                  <svg class="h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z">
+                      </path>
+                  </svg>
+                  <span class="ml-1 text-[#8fbcbb]">293 words</span>
+              </span>
+          </div>
+      </div>
+      
+      
+      <div class="rounded overflow-hidden shadow-lg flex flex-col">
+          <a href="#"></a>
+          <div class="relative"><a href="#">
+                  <img class="w-full"
+                      src="" alt="">
+                  <div class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
+              </a>
+          </div>
+          <div class="px-6 py-4 mb-auto">
+              <a href="/ospf/type-2-lsa/"
+                  class="font-medium text-lg inline-block text-[#4c566a] hover:text-[#8fbcbb] transition duration-500 ease-in-out mb-2">Type 2 LSA - Network</a>
+              <p class="text-[#e5e9f0] text-sm">
+                <p><em>Originated by the Designated Router and has Area Local Scope</em></p>
+</blockquote>
+<p>For each transit broadcast or NBMA networks the designated router originates a Network LSA only if it has at least one full adjacency to at least one other router. The Network LSA flooded throughout the area that contains the network and describes all the routers attached to the network.</p>
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p><em>The Designated Router includes itself int the router list</em></p>
+              </p>
+          </div>
+          <div class="px-6 py-3 flex flex-row items-center justify-between bg-[#2e3440]">
+              <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
+                  <svg height="13px" width="13px" version="1.1" id="Layer_1"
+                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                      y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                      xml:space="preserve">
+                      <g>
+                          <g>
+                              <path
+                                  d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256 c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128 c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z">
+                              </path>
+                          </g>
+                      </g>
+                  </svg>
+                  <span class="ml-1 text-[#8fbcbb]">2 minutes</span>
+              </span>
+
+              <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
+                  <svg class="h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z">
+                      </path>
+                  </svg>
+                  <span class="ml-1 text-[#8fbcbb]">302 words</span>
+              </span>
+          </div>
+      </div>
+      
          
   </div>
       
