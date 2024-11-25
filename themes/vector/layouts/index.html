@@ -17,7 +17,7 @@
               <div class=" py-2 px-4 rounded-full text-center backdrop-blur-md">
                   <!-- Avatar or Logo -->
                    <div class="">
-                      <img src="{{ .Site.Params.site.logo }}" width="400" alt="">
+                      <img src="{{ .Site.Params.site.logo }}" width="200" alt="">
                    </div>
                    <!-- Brand and sescription-->
                   </div class="flex flex-col space-y-10 lg:mt-16 ">
@@ -34,50 +34,6 @@
         </div>
    </header>
     <main>
-      <div class="relative">
-        <!-- Mobile Menu Button -->
-        <button id="menu-button" class="block md:hidden p-2 text-gray-700" aria-label="Toggle Menu">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
-        </button>
-      
-        <!-- Navigation Menu -->
-        <nav id="menu" class="hidden md:block">
-          <div class="bg-white md:bg-transparent shadow-md md:shadow-none md:flex space-y-4 md:space-y-0">
-            <ul class="space-y-2 md:flex md:space-y-0 md:space-x-6">
-              {{ range .Site.Menus.main }}
-              <li class="relative group">
-                <a href="{{ .URL }}" class="block text-gray-700 hover:text-blue-600">{{ .Name }}</a>
-      
-                <!-- Submenu -->
-                {{ if .HasChildren }}
-                <ul class="hidden group-hover:block absolute bg-white shadow-lg left-0 top-full w-48 space-y-2 p-4">
-                  {{ range .Children }}
-                  <li>
-                    <a href="{{ .URL }}" class="block text-gray-700 hover:text-blue-600">{{ .Name }}</a>
-      
-                    <!-- Nested Submenu -->
-                    {{ if .HasChildren }}
-                    <ul class="hidden group-hover:block absolute bg-white shadow-lg left-full top-0 w-48 space-y-2 p-4">
-                      {{ range .Children }}
-                      <li>
-                        <a href="{{ .URL }}" class="block text-gray-700 hover:text-blue-600">{{ .Name }}</a>
-                      </li>
-                      {{ end }}
-                    </ul>
-                    {{ end }}
-                  </li>
-                  {{ end }}
-                </ul>
-                {{ end }}
-              </li>
-              {{ end }}
-            </ul>
-          </div>
-        </nav>
-      </div>
-      
 <!--Recent Posts-->
 {{ partial "recent-posts.html" . }}
 </main>
