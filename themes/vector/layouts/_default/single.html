@@ -40,6 +40,7 @@
           </div>
           <!--Author-->
           <div class="flex author">
+            <!--Use Avatar Image from assets folder --> 
             {{ $image :=  resources.Get "author/avatar.png" }}
             <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
             alt="{{ $.Site.Params.Author.name | default " Author" }}" src="{{ $image.RelPermalink }}" />
