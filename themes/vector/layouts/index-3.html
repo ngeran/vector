@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Hero Section</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <!-- Fixed Navigation Menu -->
+  <nav class="fixed top-0 left-0 w-full bg-white shadow-lg z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="#" class="text-xl font-bold text-gray-800">Brand</a>
+      <div>
+        <ul class="hidden md:flex space-x-4">
+          <li class="group relative">
+            <a href="#" class="text-gray-800 hover:text-blue-500">Home</a>
+          </li>
+          <li class="group relative">
+            <a href="#" class="text-gray-800 hover:text-blue-500">Services</a>
+            <ul class="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2">
+              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Web Design</a></li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Marketing</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="text-gray-800 hover:text-blue-500">About</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-800 hover:text-blue-500">Contact</a>
+          </li>
+        </ul>
+        <!-- Hamburger Menu for Mobile -->
+        <button id="menu-btn" class="md:hidden text-gray-800 focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <ul id="mobile-menu" class="hidden bg-white shadow-lg rounded-md md:hidden">
+      <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Home</a></li>
+      <li>
+        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Services</a>
+        <ul class="ml-4">
+          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Web Design</a></li>
+          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Marketing</a></li>
+        </ul>
+      </li>
+      <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">About</a></li>
+      <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="h-screen bg-cover bg-center flex items-center justify-center text-center" style="background-image: url('/dot-grid.png');">
+    <div class="text-white px-6">
+      <h1 class="text-4xl md:text-6xl font-bold">Welcome to Our Website</h1>
+      <p class="mt-4 text-lg md:text-2xl">Your success starts here. Let us guide you.</p>
+      <button class="mt-6 px-8 py-3 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600">Get Started</button>
+    </div>
+  </header>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Your Brand. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <script>
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

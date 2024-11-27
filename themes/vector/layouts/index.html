@@ -4,40 +4,96 @@
     {{ partial "head.html" . }}
   </head>
   <body class="bg-[#242933] ">
-    <!-- Navigation -->
-    <nav class="relative container text-white mx-auto p-6">
-      <!--Flex Container-->
-      <div class="flex items-center justify-between">
-        <!--LOGO-->
-        <div class="pt-2"> 
-              <img src="/ngeranio_logo.png" class="h-20" alt="">
-        </div>
-        <!-- Menu Items-->
-         <div class="hidden md:flex space-x-6 ">
-            <a href="">home</a>
-            <a href="">post</a>
-            <a href="">projects</a>
-         </div>
-      </div>
-    </nav>
-    <!-- Hero Section -->
-     <section id="hero">
-        <div class="container flex flex-col-reverse md:flex-row items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0">
-            <!-- Left Item -->
-             <div class="flex flex-col mb-32 space-y-12 md:w-1/2">
-                <h1 class="text-[#5e81ac] max-w-md text-4xl font-bold text-center md:text-5xl md:text-left">
-                  Let's Talk About Networking Stuff
-                </h1>
-                <p class="max-w-sm text-center text-slate-500 md:text-left">This is the space for the bio</p>
-                <div class="flex justify-center md:justify-start">
-                  <button class="bg-[#ebcb8b] hover:bg-[#ebcb8b] text-[#5e81ac] font-bold p-3 pt-2 px-6 rounded-md transition">Start Reading</button>
-                </div>
-             </div>
-             <!-- Image -->
-              <div class="md:w-/12">
-                  <img src="/site_logo.png" alt="">
+    <!-- Header Section -->
+       <header class="">
+        <!-- Top Hero Container -->
+         <div class="relative flex flex-col grow">
+            <!-- Navigation -->
+            {{ partial "nav.html" . }}
+           <!-- Hero Section -->
+           <svg
+           class="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+           aria-hidden="true">
+           <defs>
+             <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width="200" height="200" x="100%" y="-1"
+               patternUnits="userSpaceOnUse">
+               <path d="M.5 200V.5H200" fill="none"></path>
+             </pattern>
+           </defs>
+           <svg x="50%" y="-1" class="overflow-visible fill-gray-800/20">
+             <path d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
+               stroke-width="0"></path>
+           </svg>
+           <rect width="100%" height="100%" stroke-width="0" fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)"></rect>
+         </svg>
+            <!-- Background Image-->
+            <div style="background-image: url('img/hero.jpg');" class="flex flex-col items-center justify-center h-[calc(100vh-100px)] min-h-[500px] bg-contain md:bg-cover bg-center bg-no-repeat ">
+              <!-- Avatar or Logo Image Wrapper-->
+              <div class=" py-2 px-4 rounded-full text-center backdrop-blur-md">
+                  <!-- Avatar or Logo -->
+                   <div class="">
+                      <img src="{{ .Site.Params.site.logo }}" width="200" alt="">
+                   </div>
+                   <!-- Brand and sescription-->
+                  </div class="flex flex-col space-y-10 lg:mt-16 ">
+                  <!-- Brand Name -->
+                  <h1 class="text-[#5e81ac] text-3xl mt-3 font-semibold text-center">{{ .Site.Params.author.headline }}</h1>
+                  <!-- Brand Description-->
+                  <p class="  lg:max-w-2xl md:max-w-lg sm:max-w-md text-lg sm:p-3 md:p-3 text-[#ebcb8b] text-center my-10 ">
+                    {{ .Site.Params.author.bio }}
+                  </p>
+                   <div>
               </div>
+            </div>
+            </div>
         </div>
-     </section>
+   </header>
+    <main>
+<!-- This is the main section --> 
+<section>
+  <div class="relative isolate overflow-hidden bg-gray-900">
+    <svg
+      class="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+      aria-hidden="true">
+      <defs>
+        <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width="200" height="200" x="100%" y="-1"
+          patternUnits="userSpaceOnUse">
+          <path d="M.5 200V.5H200" fill="none"></path>
+        </pattern>
+      </defs>
+      <svg x="50%" y="-1" class="overflow-visible fill-gray-800/20">
+        <path d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z"
+          stroke-width="0"></path>
+      </svg>
+      <rect width="100%" height="100%" stroke-width="0" fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)"></rect>
+    </svg>
+    <div
+      class="absolute left-[calc(50%-4rem)] top-10 -z-10 transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]"
+      aria-hidden="true">
+      <div class="aspect-[1108/632] w-[69.25rem] bg-gradient-to-r from-[#2e3440] to-[#3b4252] opacity-20"
+        style="clip-path:polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)">
+      </div>
+    </div>
+    <div class="mt-[-50px] flex h-screen items-center justify-center">
+      <div class="max-w-full flex-shrink-0 px-4 text-center lg:mx-0 lg:max-w-3xl lg:pt-8">
+        <h1 class="mt-10 text-5xl font-bold tracking-tight text-white sm:text-6xl">
+          revolutionize
+          <span class="text-sky-500">your workflow</span> with
+          <span class="text-sky-500">Zynx</span>
+        </h1>
+        <p class="mt-6 text-lg leading-8 text-gray-300">Elevate Your Productivity With Zynx, Your Personalized Workflow
+          Assistant</p>
+        <div class="mt-5 flex items-center justify-center gap-x-6">
+          <a href="/register"
+            class="rounded-md bg-sky-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
+            rel="noreferrer">Try Now →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<!--Footer-->
+{{ partial "footer.html" . }}
 </body>
 </html>
