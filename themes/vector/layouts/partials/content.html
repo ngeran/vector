@@ -3,7 +3,7 @@
   
       <div class="border-b border-[#4c566a] mt-20 mb-5 flex justify-between text-sm">
           <div class=" flex items-center pb-2 pr-2 border-b-2 border-[#434c5e] uppercase">
-              <svg class="h-6 mr-3" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+              <svg class="h-6 mr-3 fill-[#5e81ac]" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 455.005 455.005"
                   style="enable-background:new 0 0 455.005 455.005;" xml:space="preserve">
                   <g>
@@ -16,7 +16,7 @@
                       <path d="M53.527,192.864c-2.187,3.518-1.109,8.142,2.409,10.329l183.478,114.081c1.232,0.767,2.601,1.132,3.953,1.132 c2.506,0,4.956-1.256,6.376-3.541c2.187-3.518,1.109-8.142-2.409-10.329L63.856,190.455 C60.338,188.266,55.714,189.346,53.527,192.864z"> </path>
                   </g>
               </svg>
-              <h1 class="font-semibold inline-block">{{ .Title }}</h1>
+              <h1 class="font-semibold inline-block text-[#8fbcbb]">{{ .Title }}</h1>
           </div>
           <a href="#">See All</a>
       </div>
@@ -25,9 +25,9 @@
     {{ $paginator := .Paginate (where .Data.Pages "Section" "routing") }}
     {{ range $paginator.Pages }}
       <!-- CARD STARTS -->
-      <div class="rounded overflow-hidden shadow-lg flex flex-col">
+      <div class=" overflow-hidden shadow-lg flex flex-col">
           <a href="#"></a>
-          <div class="relative"><a href="#">
+          <div class="relative"><a href="{{ .RelPermalink }}">
                   <!-- Featured Image-->
             {{ with .Resources.GetMatch "featured.png" }}
             <img class="w-full overflow-hidden" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}">
@@ -42,9 +42,9 @@
                 {{ .Summary }}
               </p>
           </div>
-          <div class="px-6 py-3 flex flex-row items-center justify-between bg-[#2e3440]">
+          <div class="px-6 py-3 flex flex-row items-center justify-between bg-[#242933]">
               <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
-                  <svg height="13px" width="13px" version="1.1" id="Layer_1"
+                  <svg class="fill-[#5e81ac]" height="13px" width="13px" version="1.1" id="Layer_1"
                       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                       y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
                       xml:space="preserve">
@@ -60,7 +60,7 @@
               </span>
 
               <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
-                  <svg class="h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg class="h-5 fill-[#5e81ac]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z">
                       </path>

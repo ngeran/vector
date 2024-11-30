@@ -5,6 +5,9 @@ theme = 'vector'
 paginate = 6
 
 
+  [params]
+  mainSections = ['routing']
+
 # -- Site Menu --
 
 [[menus.main]]
@@ -35,7 +38,7 @@ paginate = 6
 
 
  [params.site]
-  logo = "/site_logo.png"
+  logo = "/networking-dark.png"
 
 [taxonomies]
   category = "categories"
@@ -57,6 +60,8 @@ paginate = 6
 [tableOfContents]
   startLevel = 2
   endLevel = 4
+
+
 
 [params.author]
     name = "ngeranio a.k.a nikos"

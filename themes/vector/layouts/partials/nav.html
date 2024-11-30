@@ -3,20 +3,22 @@
     <div class="mx-auto flex items-center justify-between">
       <!-- Logo or Branding -->
       <div class=" text-xl ">
-        <a href="/" class="text-xl" ><span class="text-[#5e81ac]">ngeran[</span><span class="text-[#ebcb8b]">io</span><span class="text-[#5e81ac]">]</span></a>
+       <a href="/" class="text-xl" ><span class="text-[#eceff4] ">ngeran</span><span class="text-[#81a1c1]">[</span><span class="text-[#ebcb8b]">io</span><span class="text-[#81a1c1]">]</span>
+        </a>
       </div>
   
       <!-- Desktop Menu -->
-      <div class="hidden lg:flex space-x-6">
+      <div class="hidden lg:flex space-x-6 ">
         {{ range .Site.Menus.main }}
           <div class="relative group">
-            <a href="{{ .URL }}" class="text-[#5e81ac] hover:text-[#ebcb8b] logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom">{{ .Name }}</a>
-  
+            <a href="{{ .URL }}" class=" text-[#d8dee9] hover:text-[#ebcb8b] h-full">{{ .Name }}</a>
+            
             {{ if .HasChildren }}
-              <div class="absolute left-0 hidden p-4 space-y-2 bg-gray-700  group-hover:block">
+ 
+              <div class="absolute  left-0 hidden p-4 mt-0 space-y-2 bg-gray-700  group-hover:block rounded-md bg-opacity-10 backdrop-blur-lg">
                 {{ range .Children }}
                   <div>
-                    <a href="{{ .URL }}" class="text-[#5e81ac] hover:text-gray-300">{{ .Name }}</a>
+                    <a href="{{ .URL }}" class="text-[#d8dee9] hover:text-[#ebcb8b]">{{ .Name }}</a>
                   </div>
                 {{ end }}
               </div>
