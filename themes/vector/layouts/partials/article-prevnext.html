@@ -1,0 +1,13 @@
+<div class="article-nextprev">
+    <div class="next-post">
+        {{ if .NextInSection }}
+            <a class="link-reverse" href="{{ .NextInSection.Permalink }}?ref=footer">{{ .NextInSection }}
+        {{ end }}
+    </div>
+  
+    <div class="previous-post">
+        {{ if .PrevInSection }}
+            <a class="link-reverse" href="{{ .PrevInSection.Permalink }}?ref=footer">{{ .PrevInSection }}
+        {{ end }}
+    </div>
+  </div>

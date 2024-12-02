@@ -22,7 +22,8 @@
       </div>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-    {{ $paginator := .Paginate (where .Data.Pages "Section" "routing") }}
+    {{ $pages := where .Data.Pages "Section" "routing" }}
+    {{ $paginator := .Paginate $pages.ByTitle 6 }}
     {{ range $paginator.Pages }}
       <!-- CARD STARTS -->
       <div class=" overflow-hidden shadow-lg flex flex-col">
