@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 <meta name="robots" content="noindex, nofollow" />
 <title>
-Type 3 LSA - Network | ngeran[io]
+Route Selection | ngeran[io]
 </title>
 
     <link rel="stylesheet" href="/css/styles.css">
@@ -143,16 +143,16 @@ Type 3 LSA - Network | ngeran[io]
        
         
         <header class="mt-5 max-w-prose">
-          <h1 class="mt-0 text-4xl font-extrabold text-[#5e81ac] dark:text-neutral">Type 3 LSA - Network</h1>
+          <h1 class="mt-0 text-4xl font-extrabold text-[#5e81ac] dark:text-neutral">Route Selection</h1>
           <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
             <div class="flex flex-row flex-wrap items-center">
               
               
-              <time datetime="2024-11-22T13:13:42-05:00">November 22, 2024</time> 
+              <time datetime="2024-12-01T09:15:27-05:00">December 1, 2024</time> 
               <span class="px-2 text-primary-500">.</span>
-              <span>293 words</span>
+              <span>187 words</span>
               <span class="px-2 text-primary-500">.</span>
-              <span>2 minutes</span>
+              <span>1 minutes</span>
             </div>
             <div class="flex flex-row flex-wrap items-center">
               
@@ -184,7 +184,21 @@ Type 3 LSA - Network | ngeran[io]
           <div class=" ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
             <div class="mt-0 overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
                 <div class="min-w-[220px] py-2 border-dotted list-none  ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600 text-sm">
-                  <nav id="TableOfContents"></nav>
+                  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#best-path-selection">Best Path Selection</a></li>
+    <li><a href="#lowest-route-preference">Lowest Route Preference</a></li>
+    <li><a href="#highest-local-prefence">Highest Local Prefence</a></li>
+    <li><a href="#shortest-as-path">Shortest AS Path</a></li>
+    <li><a href="#lowest-origin">Lowest Origin</a></li>
+    <li><a href="#lowest-med">Lowest MED</a></li>
+    <li><a href="#route-type">Route Type</a></li>
+    <li><a href="#lowest-igp-cost">Lowest IGP cost</a></li>
+    <li><a href="#lowest-r-id-or-oldest-active">Lowest R-ID or Oldest Active</a></li>
+    <li><a href="#cluster-list">Cluster List</a></li>
+    <li><a href="#lowest-peer-ip">Lowest Peer IP</a></li>
+  </ul>
+</nav>
                 </div>
             </div>
           </div>
@@ -193,55 +207,89 @@ Type 3 LSA - Network | ngeran[io]
       <div class="min-w-0 min-h-0 max-w-fit">
         <div class="article-content max-w-prose mb-20 prose-h3:text-[#5e81ac]">
            
-        <pre class="wp-block-code"><code>
-0                   1                   2                   3
-0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|            LS age             |     Options   |       3       |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                        Link State ID                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                     Advertising Router                        |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                     LS sequence number                        |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|         LS checksum           |             length            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|                         Network Mask                          |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|      0        |                  metric                       |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|     TOS       |                TOS  metric                    |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-</code></pre>
-<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
-<p><em>Originated by the ABR — has area scope</em></p>
+        <blockquote>
+<p>Before the router even starts the route selection process it needs to make sure that the route is valid, checks the <strong>Martian</strong> routes, <strong>AS loops</strong> and <strong>next-hop reachability</strong>.</p>
 </blockquote>
-<p id="4905">Describes networks outside of the area</p>
+<h2 id="best-path-selection">Best Path Selection</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Attribute</th>
+          <th style="text-align: left">Preference</th>
+          <th style="text-align: left">Default Behavior</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1. Route Preference</td>
+          <td style="text-align: left">Lowest</td>
+          <td style="text-align: left">Default value is 170</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2. Local Preference</td>
+          <td style="text-align: left">Highest</td>
+          <td style="text-align: left">Default learned value is 100</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3. AS-Path</td>
+          <td style="text-align: left">Shortest</td>
+          <td style="text-align: left">Usualy the first time route selection occurs</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4. Origin</td>
+          <td style="text-align: left">Lowest</td>
+          <td style="text-align: left">IGP (I) &gt;  EGP (E), EGP &gt; incomplete (?)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">5. Multi Exit Discriminator (MED)</td>
+          <td style="text-align: left">Lowest</td>
+          <td style="text-align: left">Compared when routes are learned from the same AS</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">6. Route Type</td>
+          <td style="text-align: left">External</td>
+          <td style="text-align: left">Internal vs External, External prefered</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">7. IGP Cost</td>
+          <td style="text-align: left">Lowest</td>
+          <td style="text-align: left">lowest cost towards the BGP next-hop</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">8. Internal vs External</td>
+          <td style="text-align: left">Lowest</td>
+          <td style="text-align: left">Lowest R-ID,  Oldest active route</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">10. Cluster List</td>
+          <td style="text-align: left">Shortest</td>
+          <td style="text-align: left">When route reflection is used</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">11. Peer IP Address</td>
+          <td style="text-align: left">Lowest</td>
+          <td style="text-align: left">Multiple peerings between the same router</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>For JUNOS the route selection results and criteria can be seen in the output of:</p>
+</blockquote>
 <ul>
-<li><strong>Link State ID:</strong>&nbsp;Identifies the piece of the routing domain that<br>is being described by the LSA</li>
+<li><strong>show route details</strong></li>
+<li><strong>show route extensive</strong></li>
 </ul>
-<pre class="wp-block-code"><code>            LS Type   Link State ID
-            _______________________________________________
-            1         The originating router's Router ID.
-            2         The IP interface address of the
-                      network's Designated Router.
-            3         The destination network's IP address.
-            4         The Router ID of the described AS
-                      boundary router.
-            5         The destination network's IP address.
-</code></pre>
-<ul>
-<li><strong>Advertising Router:</strong>&nbsp;The Router ID of the router that originated the LSA.</li>
-<li><strong>LS Sequence Number:</strong>&nbsp;Used for old or duplicated LSA detection</li>
-<li><strong>LS Checksum:</strong>&nbsp;Checksum of the complete LSA including the header</li>
-<li>plus:</li>
-<li><strong>(4-byte) Network Mask:&nbsp;</strong>Subnet mask of the advertised network. It is used in conjunction with the link-state ID filed, which encapsulates the network address in a Type 3 LSA.</li>
-<li><strong>(1-byte) Reserved ( set to 0):</strong></li>
-<li><strong>(3-byte) Metric:&nbsp;</strong>This field provides the cost of the route to the network destination.When the summary LSA is representing an aggregated route (using the area-range command), this field is set to the largest current metric of the contributing routes.</li>
-<li><strong>(1-byte) ToS (not used):</strong>This field describes any optional ToS information encoded within the network described. The Junos OS does not use this field.</li>
-<li><strong>(3-byte) ToS metric ( not used):</strong></li>
-</ul>
+<h2 id="lowest-route-preference">Lowest Route Preference</h2>
+<h2 id="highest-local-prefence">Highest Local Prefence</h2>
+<h2 id="shortest-as-path">Shortest AS Path</h2>
+<h2 id="lowest-origin">Lowest Origin</h2>
+<h2 id="lowest-med">Lowest MED</h2>
+<h2 id="route-type">Route Type</h2>
+<h2 id="lowest-igp-cost">Lowest IGP cost</h2>
+<h2 id="lowest-r-id-or-oldest-active">Lowest R-ID or Oldest Active</h2>
+<h2 id="cluster-list">Cluster List</h2>
+<h2 id="lowest-peer-ip">Lowest Peer IP</h2>
+
          
         </div>
         
@@ -250,7 +298,7 @@ Type 3 LSA - Network | ngeran[io]
   <div class="">
     
     <a
-      href="http://localhost:1313/routing/ospf/lsa2/?ref=footer"
+      href="http://localhost:1313/routing/bgp/fsm/?ref=footer"
       class="flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
     >
       <svg
@@ -274,28 +322,6 @@ Type 3 LSA - Network | ngeran[io]
   </div>
   
   <div class="">
-    
-    <a
-      href="http://localhost:1313/routing/ospf/lsa4/?ref=footer"
-      class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-    >
-      Next
-      <svg
-        class="w-3.5 h-3.5 ms-2 rtl:rotate-180"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 14 10"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M1 5h12m0 0L9 1m4 4L9 9"
-        />
-      </svg>
-    </a>
     
   </div>
 </div>
