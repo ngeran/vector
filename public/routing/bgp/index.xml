@@ -6,8 +6,15 @@
     <description>Recent content in BGP Posts on ngeran[io]</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Nov 2024 13:14:14 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 01 Dec 2024 09:15:27 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/routing/bgp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Route Selection</title>
+      <link>http://localhost:1313/routing/bgp/bgp-route-selection/</link>
+      <pubDate>Sun, 01 Dec 2024 09:15:27 -0500</pubDate>
+      <guid>http://localhost:1313/routing/bgp/bgp-route-selection/</guid>
+      <description>How to influance the route selection with the approptiate attributes.</description>
+    </item>
     <item>
       <title>Finite State Machine</title>
       <link>http://localhost:1313/routing/bgp/fsm/</link>
