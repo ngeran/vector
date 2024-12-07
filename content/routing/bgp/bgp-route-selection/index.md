@@ -1,7 +1,7 @@
 +++
 title = 'Route Selection'
 date = 2024-12-01T09:15:27-05:00
-draft = false
+draft = true
 tags = ["BGP","Routing","Juniper"]
 featured_image = 'featured.png'
 summary = 'How to influance the route selection with the approptiate attributes.'
