@@ -32,7 +32,10 @@ summary = 'How to influance the route selection with the approptiate attributes.
 
 
 ## Lowest Route Preference
-## Highest Local Prefence
+
+The output below shows the active 20.20.20/24 route having a non-default route preference of 169. The other learned route to 20.20.20/24 has a default BGP route preference of 170. Junos OS is verbose in the output showing us why the second route has lost in the route selection. The inactive reason given is Route Preference.
+
+## Highest Local Preference 
 ## Shortest AS Path 
 ## Lowest Origin 
 ## Lowest MED
