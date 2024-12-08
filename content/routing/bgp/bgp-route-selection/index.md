@@ -38,34 +38,34 @@ Junos OS is kind enough to tell us why the second route has lost in the route se
 > The Inactive Reason is **Route Preference**
 
 ```
-jcluser@vMX4# run show route 192.168.250.0/24 exact detail                
+jcluser@vMX4# run show route 192.168.250.0/24 exact detail       
 
-inet.0: 14 destinations, 15 routes (14 active, 0 holddown, 0 hidden)
+inet.0: 14 destinations, 15 routes (14 active,0 holddown,0 hidden)
 192.168.250.0/24 (2 entries, 1 announced)
         *BGP    Preference: 160/-101
                 Next hop type: Router, Next hop index: 595
                 Address: 0xc4b5f5c
                 Next-hop reference count: 2
                 Source: 10.100.34.1
-                Next hop: 10.100.34.1 via ge-0/0/1.0, selected
+                Next hop: 10.100.34.1 via ge-0/0/1.0,selected
                 Session Id: 0x141
                 State: <Active Ext>
                 Local AS: 64533 Peer AS: 64522
                 Age: 7 
-                Validation State: unverified 
+                Validation State: unverified
                 Task: BGP_64522.10.100.34.1
-                Announcement bits (2): 0-KRT 4-BGP_RT_Background 
+                Announcement bits(2):0-KRT 4-BGP_RT_Background
                 AS path: 64522 I 
                 Accepted
                 Localpref: 100
                 Router ID: 10.100.100.3
                 Thread: junos-main 
          BGP    Preference: 170/-101
-                Next hop type: Router, Next hop index: 596
+                Next hop type: Router,Next hop index: 596
                 Address: 0xc4b5ef4
                 Next-hop reference count: 1
                 Source: 10.100.24.1
-                Next hop: 10.100.24.1 via ge-0/0/0.0, selected
+                Next hop: 10.100.24.1 via ge-0/0/0.0,selected
                 Session Id: 0x140
                 State: <Ext>
                 Inactive reason: Route Preference
@@ -230,64 +230,170 @@ inet.0: 14 destinations, 15 routes (14 active, 0 holddown, 0 hidden)
 
 ## Lowest MED
 
-The active route has a MED value of 20. This is shown as metric in the output. The second route has a MED of 100 and this results in the inactive reason showing Not Best in its group - Route Metric or MED comparison.
+The active route has a MED value of 20 shown as metric in the output.  
+The second route has a MED of 150.
 
 > Inactive reason **Not Best in its group - Route Metric or MED comparison**
 
 ```
-jcluser@vMX4# run show route 192.168.250.0/24 exact detail    
+jjcluser@vMX4# run show route 192.168.250.0/24 exact detail       
 
 inet.0: 14 destinations, 15 routes (14 active, 0 holddown, 0 hidden)
 192.168.250.0/24 (2 entries, 1 announced)
         *BGP    Preference: 170/-101
-                Next hop type: Router, Next hop index: 596
-                Address: 0xc4b5ef4
-                Next-hop reference count: 2
-                Source: 10.100.24.1
-                Next hop: 10.100.24.1 via ge-0/0/0.0, selected
-                Session Id: 0x140
-                State: <Active Ext>
-                Local AS: 64533 Peer AS: 64522
-                Age: 1:55:20 
-                Validation State: unverified 
-                Task: BGP_64522.10.100.24.1
-                Announcement bits (2): 0-KRT 4-BGP_RT_Background 
-                AS path: 64522 I 
-                Accepted
-                Localpref: 100
-                Router ID: 10.100.100.2
-                Thread: junos-main 
-         BGP    Preference: 170/-101
                 Next hop type: Router, Next hop index: 595
                 Address: 0xc4b5f5c
-                Next-hop reference count: 1
+                Next-hop reference count: 2
                 Source: 10.100.34.1
                 Next hop: 10.100.34.1 via ge-0/0/1.0, selected
                 Session Id: 0x141
-                State: <NotBest Ext Changed>
-                Inactive reason: Not Best in its group - 
-                                 Route Metric or MED comparison
+                State: <Active Ext>
                 Local AS: 64533 Peer AS: 64522
-                Age: 5 Metric: 20 
+                Age: 36:03 Metric: 20 
                 Validation State: unverified 
                 Task: BGP_64522.10.100.34.1
+                Announcement bits (2): 0-KRT 4-BGP_RT_Background 
                 AS path: 64522 I 
                 Accepted
                 Localpref: 100
                 Router ID: 10.100.100.3
                 Thread: junos-main 
+         BGP    Preference: 170/-101
+                Next hop type: Router, Next hop index: 596
+                Address: 0xc4b5ef4
+                Next-hop reference count: 1
+                Source: 10.100.24.1
+                Next hop: 10.100.24.1 via ge-0/0/0.0, selected
+                Session Id: 0x140
+                State: <NotBest Ext>
+                Inactive reason: Not Best in its group - 
+                                 Route Metric or MED comparison
+                Local AS: 64533 Peer AS: 64522
+                Age: 13 Metric: 150 
+                Validation State: unverified 
+                Task: BGP_64522.10.100.24.1
+                AS path: 64522 I 
+                Accepted
+                Localpref: 100
+                Router ID: 10.100.100.2
+                Thread: junos-main
 ```
 
 ## Route Type 
 
-The active route is selected because the strictly external route is preferred over the external route learned through an internal neighbor. Have a look at the Local AS and Peer AS line, this gives information on if the route is learned from an I-BGP neighbor or an E-BGP neighbor. The second route is inactive and the inactive reason shown is Interior > Exterior > Exterior via Interior.
-So the order here is interior routes (local redistributed routes into BGP), then strictly external routes (directly learned from E-BGP peers), and lastly external routes learned through internal peers.
+The directly adverised external route is preferred over the external route learned via an internal neighbor. 
+This can be seen from the Local AS and Peer AS line.  
+The **Local AS** and **Peer AS** line gives information on if the route is learned from an    
+internal or external neighbor.  
+The order of preference is:   
+- Local redistributed routes into BGP **(Interior)**
+- External route directly learned from External BGP peers **(Exterior)**
+- External route learned through an Internal BGP peer **(Exterior via Interior)**
 
+> Inactive reason **Interior > Exterior > Exterior via Interior**
+
+```
+jcluser@vMX6# run show route 192.168.250.0/24 exact detail 
+
+inet.0: 11 destinations, 12 routes (11 active, 0 holddown, 0 hidden)
+192.168.250.0/24 (2 entries, 1 announced)
+        *BGP    Preference: 170/-101
+                Next hop type: Router, Next hop index: 587
+                Address: 0xc4b5dbc
+                Next-hop reference count: 2
+                Source: 10.100.46.1
+                Next hop: 10.100.46.1 via ge-0/0/3.0, selected
+                Session Id: 0x141
+                State: <Active Ext>
+                Local AS: 64544 Peer AS: 64533
+                Age: 50 
+                Validation State: unverified 
+                Task: BGP_64533.10.100.46.1
+                Announcement bits (3):0-KRT 4-BGP_RT_Background 
+                                     5-Resolve tree 1 
+                AS path: 64533 I 
+                Accepted
+                Localpref: 100
+                Router ID: 10.100.100.4
+                Thread: junos-main 
+         BGP    Preference: 170/-101
+                Next hop type: Indirect, Next hop index: 0
+                Address: 0xc4b5d54
+                Next-hop reference count: 1
+                Source: 10.100.100.5
+                Next hop type: Router, Next hop index: 349
+                Next hop: 100.123.0.1 via fxp0.0, selected
+                Session Id: 0x0
+                Protocol next hop: 10.100.25.1
+                Indirect next hop: 0xc61de84 338 INH Session ID: 0x0
+                State: <Int Ext>
+                Inactive reason: Interior > 
+                                 Exterior > 
+                                 Exterior via Interior
+                Local AS: 64544 Peer AS: 64544
+                Age: 6:58 Metric2: 0 
+                Validation State: unverified 
+                Task: BGP_64544.10.100.100.5
+                AS path: 64522 I 
+                Accepted
+                Localpref: 100
+                Router ID: 10.100.100.5
+                Thread: junos-main 
+
+```
 
 ## Lowest IGP cost
 
 The active route is chosen based on the lowest IGP cost to the BGP next-hop, shown as protocol next-hop in the output. The IGP cost is shown as metric2 in the output. The active route has a metric2 of 5. The inactive route has a metric2 of 10. The inactive reason given is Not Best in its group - IGP metric
 
+> Inactive reason **Interior > Exterior > Exterior via Interior**
+
+
+```
+jcluser@vMX4# run show route 192.168.252.0/24 exact detail    
+
+inet.0: 16 destinations, 18 routes (16 active, 0 holddown, 0 hidden)
+192.168.252.0/24 (2 entries, 1 announced)
+        *BGP    Preference: 170/-101
+                Next hop type: Router, Next hop index: 595
+                Address: 0xc4b5f5c
+                Next-hop reference count: 3
+                Source: 10.100.34.1
+                Next hop type: Router, Next hop index: 172342
+                Next hop: 10.100.34.1 via ge-0/0/1.0, selected
+                Next hop: 10.100.24.1 via ge-0/0/1.0 
+                Session Id: 0x141
+                State: <Active Ext>
+                Local AS: 64533 Peer AS: 64522
+                Age: 16:59  Metric2: 10
+                Validation State: unverified 
+                Task: BGP_64522.10.100.34.1
+                Announcement bits (2): 0-KRT 4-BGP_RT_Background 
+                AS path: 64522 64544 I 
+                Accepted
+                Localpref: 100
+                Router ID: 10.100.100.3
+                Thread: junos-main 
+         BGP    Preference: 170/-101
+                Address: 0xc4b5fc4
+                Next-hop reference count: 2
+                Source: 10.100.24.1
+                Next hop type: Router, Next hop index: 172342
+                Next hop: 10.100.34.1 via ge-0/0/1.0, selected
+                Next hop: 10.100.24.1 via ge-0/0/1.0 
+                Session Id: 0x0
+                State: <NotBest Ext Changed>
+                Inactive reason: Not Best in its group - IGP metric
+                Local AS: 64533 Peer AS: 64522
+                Age: 16:59 Metric
+                Validation State: unverified 
+                Task: BGP_64522.10.100.24.1
+                AS path: 64522 64544 I 
+                Accepted
+                Localpref: 100
+                Router ID: 10.100.100.2
+                Thread: junos-main 
+```
 
 ## Lowest R-ID or Oldest Active
 
@@ -298,6 +404,49 @@ The first output shows the behavior for internal sessions. For internal sessions
 BGP Router ID
 
 For external sessions the default behavior is to stay on the current active route for stability reasons. The inactive reason given in this scenario is Not Best in its group - Active preferred
+
+```
+jcluser@vMX4# run show route 192.168.252.0/24 exact detail 
+
+inet.0: 16 destinations, 18 routes (16 active, 0 holddown, 0 hidden)
+192.168.252.0/24 (2 entries, 1 announced)
+        *BGP    Preference: 170/-101
+                Next hop type: Router, Next hop index: 595
+                Address: 0xc4b5f5c
+                Next-hop reference count: 2
+                Source: 10.100.34.1
+                Next hop: 10.100.34.1 via ge-0/0/1.0, selected
+                Session Id: 0x141
+                State: <Active Ext>
+                Local AS: 64533 Peer AS: 64522
+                Age: 1:00 
+                Validation State: unverified 
+                Task: BGP_64522.10.100.34.1
+                Announcement bits (2): 0-KRT 4-BGP_RT_Background 
+                AS path: 64522 64544 I 
+                Accepted
+                Localpref: 100
+                Router ID: 10.100.100.3
+                Thread: junos-main 
+         BGP    Preference: 170/-101
+                Next hop type: Router, Next hop index: 0
+                Address: 0xc4b5fc4
+                Next-hop reference count: 1
+                Source: 10.100.24.1
+                Next hop: 10.100.24.1 via ge-0/0/0.0, selected
+                Session Id: 0x0
+                State: <NotBest Ext Changed>
+                Inactive reason: Not Best in its group - Active preferred
+                Local AS: 64533 Peer AS: 64522
+                Age: 1:00 
+                Validation State: unverified 
+                Task: BGP_64522.10.100.24.1
+                AS path: 64522 64544 I 
+                Accepted
+                Localpref: 100
+                Router ID: 10.100.100.2
+                Thread: junos-main 
+```
 
 BGP E-BGP Oldest
 
@@ -322,3 +471,9 @@ In the output below the active route has no cluster list whereas the inactive ro
 The ultimate tie-breaker is needed when 2 routers peer 2 or more times with each other. This is typically done for load-balancing purposes. The router-id in step 8 can't be used as it will be the same for all the peering sessions.
 
 The active route has the lowest peer ip address, shown as Source in the output. The inactive reason given is Not Best in its group - Update source
+
+
+The BGP multiple exit discriminator (MED, or MULTI_EXIT_DISC) is a non-transitive attribute, meaning that it is not propagated throughout the Internet, but only to adjacent autonomous systems (ASs). The MED attribute is optional, meaning that it is not always sent with the BGP updates. The purpose of MED is to influence how other ASs enter your AS to reach a certain prefix.
+
+
+
