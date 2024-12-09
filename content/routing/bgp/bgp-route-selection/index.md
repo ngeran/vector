@@ -344,10 +344,10 @@ inet.0: 11 destinations, 12 routes (11 active, 0 holddown, 0 hidden)
 
 ## Lowest IGP cost
 
-The active route is chosen based on the lowest IGP cost to the BGP next-hop, shown as protocol next-hop in the output. The IGP cost is shown as metric2 in the output. The active route has a metric2 of 5. The inactive route has a metric2 of 10. The inactive reason given is Not Best in its group - IGP metric
-
-> Inactive reason **Interior > Exterior > Exterior via Interior**
-
+The active route is chosen based on the lowest IGP cost to the BGP next-hop, shown as protocol next-hop in the output.
+The IGP cost is shown as metric2 in the output.  
+The active route has a metric2 of 5 vs metric2 of 10 for the inactive. 
+> Inactive reason **IGP metric**
 
 ```
 jcluser@vMX4# run show route 192.168.252.0/24 exact detail    
@@ -359,13 +359,12 @@ inet.0: 16 destinations, 18 routes (16 active, 0 holddown, 0 hidden)
                 Address: 0xc4b5f5c
                 Next-hop reference count: 3
                 Source: 10.100.34.1
-                Next hop type: Router, Next hop index: 172342
                 Next hop: 10.100.34.1 via ge-0/0/1.0, selected
                 Next hop: 10.100.24.1 via ge-0/0/1.0 
                 Session Id: 0x141
                 State: <Active Ext>
                 Local AS: 64533 Peer AS: 64522
-                Age: 16:59  Metric2: 10
+                Age: 16:59       Metric2: 5
                 Validation State: unverified 
                 Task: BGP_64522.10.100.34.1
                 Announcement bits (2): 0-KRT 4-BGP_RT_Background 
@@ -378,14 +377,14 @@ inet.0: 16 destinations, 18 routes (16 active, 0 holddown, 0 hidden)
                 Address: 0xc4b5fc4
                 Next-hop reference count: 2
                 Source: 10.100.24.1
-                Next hop type: Router, Next hop index: 172342
+                Next hop type: Router, Next hop index: 0
                 Next hop: 10.100.34.1 via ge-0/0/1.0, selected
                 Next hop: 10.100.24.1 via ge-0/0/1.0 
                 Session Id: 0x0
                 State: <NotBest Ext Changed>
                 Inactive reason: Not Best in its group - IGP metric
                 Local AS: 64533 Peer AS: 64522
-                Age: 16:59 Metric
+                Age: 16:59       Metric2: 10
                 Validation State: unverified 
                 Task: BGP_64522.10.100.24.1
                 AS path: 64522 64544 I 
@@ -397,13 +396,111 @@ inet.0: 16 destinations, 18 routes (16 active, 0 holddown, 0 hidden)
 
 ## Lowest R-ID or Oldest Active
 
-This step is different for internal sessions compared to external sessions. Examples of both I-BGP and E-BGP are shown below.
+> Internal sessions **Router-ID**
 
-The first output shows the behavior for internal sessions. For internal sessions the lowest router-id is used as the tie-breaker. The inactive route has a router-id 192.168.2.2 which is higher than the 192.168.2.2 router-id of the active route. The inactive reason given is Not Best in its group - Router ID.
+The inactive route has a router-id 10.100.100.2 which is higher than the 10.100.100.1.
 
-BGP Router ID
+> Inactive reason **Not Best in its group - Router ID**
 
-For external sessions the default behavior is to stay on the current active route for stability reasons. The inactive reason given in this scenario is Not Best in its group - Active preferred
+```
+jcluser@vMX4# run show route 192.168.252.0/24 exact detail 
+
+inet.0: 16 destinations, 18 routes (16 active, 0 holddown, 0 hidden)
+192.168.252.0/24 (2 entries, 1 announced)
+        *BGP    Preference: 170/-101
+                Next hop type: Router, Next hop index: 595
+                Address: 0xc4b5f5c
+                Next-hop reference count: 2
+                Source: 10.100.34.1
+                Next hop: 10.100.34.1 via ge-0/0/1.0, selected
+                Session Id: 0x141
+                State: <Active Ext>
+                Local AS: 64533 Peer AS: 64522
+                Age: 1:00 
+                Validation State: unverified 
+                Task: BGP_64522.10.100.34.1
+                Announcement bits (2): 0-KRT 4-BGP_RT_Background 
+                AS path: 64522 64544 I 
+                Accepted
+                Localpref: 100
+                Router ID: 10.100.100.1
+                Thread: junos-main 
+         BGP    Preference: 170/-101
+                Next hop type: Router, Next hop index: 0
+                Address: 0xc4b5fc4
+                Next-hop reference count: 1
+                Source: 10.100.24.1
+                Next hop: 10.100.24.1 via ge-0/0/0.0, selected
+                Session Id: 0x0
+                State: <NotBest Ext Changed>
+                Inactive reason: Not Best in its group - 
+                                 Router ID
+                Local AS: 64533 Peer AS: 64522
+                Age: 1:00 
+                Validation State: unverified 
+                Task: BGP_64522.10.100.24.1
+                AS path: 64522 64544 I 
+                Accepted
+                Localpref: 100
+                Router ID: 10.100.100.2
+                Thread: junos-main 
+```
+
+> External sessions **Router-ID**
+
+To use the Router-ID as a tie-breaker the command **path-selection external-router-id** needs to be coinfigured.
+The inactive route behaves as the internal and has a router-id 10.100.100.2 which is higher than the 10.100.100.1.
+
+> Inactive reason **Not Best in its group - Router ID**
+```
+jcluser@vMX4# run show route 192.168.252.0/24 exact detail 
+
+inet.0: 16 destinations, 18 routes (16 active, 0 holddown, 0 hidden)
+192.168.252.0/24 (2 entries, 1 announced)
+        *BGP    Preference: 170/-101
+                Next hop type: Router, Next hop index: 595
+                Address: 0xc4b5f5c
+                Next-hop reference count: 2
+                Source: 10.100.34.1
+                Next hop: 10.100.34.1 via ge-0/0/1.0, selected
+                Session Id: 0x141
+                State: <Active Ext>
+                Local AS: 64533 Peer AS: 64522
+                Age: 1:00       Metric2: 5 
+                Validation State: unverified 
+                Task: BGP_64522.10.100.34.1
+                Announcement bits (2): 0-KRT 4-BGP_RT_Background 
+                AS path: 64522 64544 I 
+                Accepted
+                Localpref: 100
+                Router ID: 10.100.100.1
+                Thread: junos-main 
+         BGP    Preference: 170/-101
+                Next hop type: Router, Next hop index: 0
+                Address: 0xc4b5fc4
+                Next-hop reference count: 1
+                Source: 10.100.24.1
+                Next hop: 10.100.24.1 via ge-0/0/0.0, selected
+                Session Id: 0x0
+                State: <NotBest Ext Changed>
+                Inactive reason: Not Best in its group - 
+                                 Router ID
+                Local AS: 64533 Peer AS: 64522
+                Age: 1:00
+                Validation State: unverified 
+                Task: BGP_64522.10.100.24.1
+                AS path: 64522 64544 I 
+                Accepted
+                Localpref: 100
+                Router ID: 10.100.100.2
+                Thread: junos-main 
+```
+
+> External sessions 
+
+For Satbility reasons the oldest route is prefered 
+
+> The inactive reason **Not Best in its group - Active preferred**
 
 ```
 jcluser@vMX4# run show route 192.168.252.0/24 exact detail 
@@ -436,7 +533,8 @@ inet.0: 16 destinations, 18 routes (16 active, 0 holddown, 0 hidden)
                 Next hop: 10.100.24.1 via ge-0/0/0.0, selected
                 Session Id: 0x0
                 State: <NotBest Ext Changed>
-                Inactive reason: Not Best in its group - Active preferred
+                Inactive reason: Not Best in its group - 
+                                 Active preferred
                 Local AS: 64533 Peer AS: 64522
                 Age: 1:00 
                 Validation State: unverified 
@@ -448,32 +546,83 @@ inet.0: 16 destinations, 18 routes (16 active, 0 holddown, 0 hidden)
                 Thread: junos-main 
 ```
 
-BGP E-BGP Oldest
-
- 
-
-The default behavior for external sessions can be changed using the path-selection external-router-id command. When this option is configured the external session will use the router-id as the tie-breaker (just like it does for internal sessions). The inactive reason given is Not Best in its group - Router ID.
-
-BGP E-BGP Router id - external router-id
-
-
-
 ## Cluster List
 
-Only in the case of I-BGP learned routes and the use of route reflection will point 9 become a potential selection tie-breaker. The shortest cluster list will be preferred at this point, a missing cluster list is seen as a lenght of 0 so always preferred.
+The shortest cluster list will be preferred when we have multiple route reflectors.
 
-In the output below the active route has no cluster list whereas the inactive route has a cluster list length of 1 (192.168.2.1). The inactive reason given is Not Best in its group - Cluster list length
+>Inactive reason **Not Best in its group - Cluster list length**
+
+```
+Output TBD 
+```
+
 
 
 ## Lowest Peer IP
 
+This is the last tie-breaker we can come this when for load-balancing purposed two routers peer two or more time with eachother. 
+The route has been selected based on the lowest peer ip address, shown as **Source** in the output. 
 
-The ultimate tie-breaker is needed when 2 routers peer 2 or more times with each other. This is typically done for load-balancing purposes. The router-id in step 8 can't be used as it will be the same for all the peering sessions.
+> Inactive reason is **Not Best in its group - Update source**
 
-The active route has the lowest peer ip address, shown as Source in the output. The inactive reason given is Not Best in its group - Update source
+```
+jcluser@vMX2# run show route 192.168.251.0/24 exact detail 
 
-
-The BGP multiple exit discriminator (MED, or MULTI_EXIT_DISC) is a non-transitive attribute, meaning that it is not propagated throughout the Internet, but only to adjacent autonomous systems (ASs). The MED attribute is optional, meaning that it is not always sent with the BGP updates. The purpose of MED is to influence how other ASs enter your AS to reach a certain prefix.
+inet.0: 26 destinations, 27 routes (26 active, 0 holddown, 0 hidden)
+192.168.251.0/24 (2 entries, 1 announced)
+        *BGP    Preference: 170/-101
+                Next hop type: Indirect, Next hop index: 0
+                Address: 0xc4b6234
+                Next-hop reference count: 3
+                Source: 10.100.150.1
+                Next hop type: Router, Next hop index: 607
+                Next hop: 10.100.12.1 via ge-0/0/0.0, selected
+                Session Id: 0x143
+                Protocol next hop: 10.100.100.1
+                Indirect next hop: 0xc633184 1048574 
+                                   INH Session ID: 0x144
+                State: <Active Int Ext>
+                Local AS: 64500 Peer AS: 64500
+                Age: 1:37 Metric2: 10 
+                Validation State: unverified 
+                ORR Generation-ID: 0 
+                Task: BGP_64500.10.100.150.1
+                Announcement bits (3): 0-KRT 4-BGP_RT_Background 
+                                       5-Resolve tree 4 
+                AS path: 64544 I  (Originator)
+                Cluster list:  1.1.1.1
+                Originator ID: 10.100.100.1
+                Accepted
+                Localpref: 100
+                Router ID: 10.100.150.1
+                Thread: junos-main 
+         BGP    Preference: 170/-101
+                Next hop type: Indirect, Next hop index: 0
+                Address: 0xc4b6234
+                Next-hop reference count: 3
+                Source: 10.100.150.2
+                Next hop type: Router, Next hop index: 607
+                Next hop: 10.100.12.1 via ge-0/0/0.0, selected
+                Session Id: 0x143
+                Protocol next hop: 10.100.100.1
+                Indirect next hop: 0xc633184 1048574 
+                                   INH Session ID: 0x144
+                State: <NotBest Int Ext>
+                Inactive reason: Not Best in its group - 
+                                 Update source
+                Local AS: 64500 Peer AS: 64500
+                Age: 1:37 Metric2: 10 
+                Validation State: unverified 
+                ORR Generation-ID: 0 
+                Task: BGP_64500.10.100.150.2
+                AS path: 64544 I  (Originator)
+                Cluster list:  2.2.2.2
+                Originator ID: 10.100.100.1
+                Accepted
+                Localpref: 100
+                Router ID: 10.100.150.2
+                Thread: junos-main 
+```
 
 
 
